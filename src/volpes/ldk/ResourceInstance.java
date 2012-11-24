@@ -44,10 +44,11 @@ public class ResourceInstance {
 	public ResourceInstance(InputStream is) throws LDKException {
 		stringMap = new HashMap<String,String>();
 		animationMap = new HashMap<String,AnimationSheet>();
-		loadResources(interpretXML(is));
+		Document doc = interpretXML(is);
+		loadResources(doc.getElementsByTagName("resource"));
 	}
 	
-	private NodeList interpretXML(InputStream is) throws LDKException{
+	public static Document interpretXML(InputStream is) throws LDKException{
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = null;
 		try {
@@ -58,6 +59,7 @@ public class ResourceInstance {
 		Document doc = null;
 		try {
 			doc = docBuilder.parse(is);
+			is.close();
 		} catch(SAXException e) {
 			throw new LDKException("Could not load resources", e);
 		} catch(IOException e) {
@@ -66,9 +68,7 @@ public class ResourceInstance {
 		
 		doc.getDocumentElement().normalize();
 		
-		NodeList listResources = doc.getElementsByTagName("resource");
-		
-		return listResources;
+		return doc;
 	}
 	
 	

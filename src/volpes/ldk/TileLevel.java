@@ -20,7 +20,15 @@ import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * @author Lasse Dissing Hansen
@@ -110,6 +118,28 @@ public class TileLevel {
 	public void addLayer(List<Integer> layer,BufferedImage tileSheet) {
 		layers.add(new Layer(layer));
 		manager.addTileSheet(tileSheet);
+	}
+	
+	public void addProperties(int layer,Document doc) {
+		NodeList list = doc.getElementsByTagName("tile");
+		int total = list.getLength();
+		for (int index = 0; index < total; index++) {
+			
+			Node tile = list.item(index);
+			
+			if (tile.getNodeType() == Node.ELEMENT_NODE) {
+				Element resourceElement = (Element)tile;
+				NamedNodeMap properties = resourceElement.getAttributes();
+				int id = Integer.parseInt(properties.getNamedItem("id").getNodeValue());
+				Map<String,String> tileInfo = new HashMap<String,String>();
+				for (int i = 0; i < properties.getLength();i++) {
+					Node property = properties.item(i);
+					tileInfo.put(property.getNodeName(),property.getNodeValue());
+				}
+				manager.addTileProperty(id, layer, tileInfo);
+			}
+		}
+		
 	}
 	
 	/**

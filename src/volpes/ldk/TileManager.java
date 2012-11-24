@@ -18,6 +18,7 @@ package volpes.ldk;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Lasse Dissing Hansen
@@ -52,6 +53,10 @@ public class TileManager {
 	
 	public int getSize() {
 		return size;
+	}
+	
+	public void addTileProperty(int id,int layer, Map<String,String> tileProperties) {
+		sheets.get(layer).types.get(id-1).addProperties(tileProperties);
 	}
 	
 	public void addTileSheet(BufferedImage sheet) {

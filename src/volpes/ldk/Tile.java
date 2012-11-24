@@ -16,6 +16,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
 package volpes.ldk;
 
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Lasse Dissing Hansen
@@ -25,10 +27,23 @@ public class Tile {
 	
 	private BufferedImage image;
 	private int id;
+	private Map<String,String> properties = new HashMap<String,String>();
 	
 	public Tile(BufferedImage image, int id) {
 		this.image = image;
 		this.id = id;
+	}
+	
+	protected void addProperties(Map<String,String> properties) {
+		this.properties = properties;
+	}
+	
+	public boolean getPropertyAsBool(String key) {
+		if (properties.containsKey(key)) {
+			return Boolean.parseBoolean(properties.get(key));
+		} else {
+			return false;
+		}
 	}
 
 	

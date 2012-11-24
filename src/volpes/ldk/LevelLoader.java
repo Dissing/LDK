@@ -23,15 +23,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 /**
  * @author Lasse Dissing Hansen
@@ -41,26 +37,7 @@ public class LevelLoader {
 	private static Map<String, TileLevel> levelMap;
 	
 	public static TileLevel loadLevel(int id,InputStream is) throws LDKException{
-		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder docBuilder = null;
-		try {
-			docBuilder = docBuilderFactory.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
-			throw new LDKException("Could not load resources",e);
-		}
-		Document doc = null;
-		try {
-			doc = docBuilder.parse(is);
-		} catch(SAXException e) {
-			throw new LDKException("Could not load resources", e);
-		} catch(IOException e) {
-			throw new LDKException("Could not load resources", e);
-		} catch(IllegalArgumentException e) {
-			throw new LDKException("Could not load resources", e);
-		}
-		
-		doc.getDocumentElement().normalize();
-		
+		Document doc = ResourceInstance.interpretXML(is);
 		//Get map info
 		Element infoElement = (Element)doc.getFirstChild();
 		int width = Integer.parseInt(infoElement.getAttribute("width"));
