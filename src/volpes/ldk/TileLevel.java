@@ -73,11 +73,15 @@ public class TileLevel {
 	 * @param g The Graphics for drawing the map
 	 */
 	public void render(GameContainer container, Graphics2D g) {
+		render(container, g, 0,0);
+	}
+	
+	public void render(GameContainer container, Graphics2D g, int xOffset, int yOffset) {
 		for (int layer = 0; layer < layers.size(); layer++) {
 			if (!layers.get(layer).cache) {
-				drawLayer(g,layer);
+				drawLayer(g,layer,xOffset,yOffset);
 			} else {
-				g.drawImage(layers.get(layer).cachedImage, 0, 0, null);
+				g.drawImage(layers.get(layer).cachedImage, xOffset, yOffset, null);
 			}
 		}
 	}
@@ -87,12 +91,12 @@ public class TileLevel {
 	 * @param g The Graphics to draw to
 	 * @param layer The layer to render
 	 */
-	private void drawLayer(Graphics2D g,int layer) {
+	private void drawLayer(Graphics2D g,int layer,int xOffset, int yOffset) {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				Tile tile = getTile(i,j,layer);
 				if (tile != null) {
-					g.drawImage(tile.getImage(), i*tileSize, j*tileSize, null);
+					g.drawImage(tile.getImage(), i*tileSize+xOffset, j*tileSize+yOffset, null);
 				}
 			}
 		}
@@ -121,7 +125,7 @@ public class TileLevel {
 			layers.get(index).cache = true;
 			layers.get(index).cachedImage = graphicsConfig.createCompatibleImage(width*manager.getSize(), height*manager.getSize());
 			Graphics2D g2d = (Graphics2D) layers.get(index).cachedImage.getGraphics();
-			drawLayer(g2d,index);
+			drawLayer(g2d,index,0,0);
 			g2d.dispose();
 		} else {
 			layers.get(index).cache = false;
