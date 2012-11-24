@@ -28,6 +28,8 @@ import java.util.List;
  */
 public class TileLevel {
 	
+	private int id;
+	
 	private TileManager manager = new TileManager();
 	
 	private int width,height;
@@ -41,9 +43,10 @@ public class TileLevel {
 	 * @param width
 	 * @param height
 	 */
-	public TileLevel(int width, int height) {
+	public TileLevel(int id, int width, int height) {
 		this.width = width;
 		this.height = height;
+		this.id = id;
 	}
 	
 	/**
@@ -124,6 +127,13 @@ public class TileLevel {
 		}
 	}
 	
+	/**
+	 * @return The level id
+	 */
+	public int getId() {
+		return id;
+	}
+
 	/**
 	 * Private data structure for internal representation of layer
 	 */

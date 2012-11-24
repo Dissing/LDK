@@ -40,7 +40,7 @@ import org.xml.sax.SAXException;
 public class LevelLoader {
 	private static Map<String, TileLevel> levelMap;
 	
-	public static TileLevel loadLevel(InputStream is) throws LDKException{
+	public static TileLevel loadLevel(int id,InputStream is) throws LDKException{
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = null;
 		try {
@@ -54,6 +54,8 @@ public class LevelLoader {
 		} catch(SAXException e) {
 			throw new LDKException("Could not load resources", e);
 		} catch(IOException e) {
+			throw new LDKException("Could not load resources", e);
+		} catch(IllegalArgumentException e) {
 			throw new LDKException("Could not load resources", e);
 		}
 		
@@ -75,7 +77,7 @@ public class LevelLoader {
 			tilesetImages.add(loadTileSheet(path));
 		}
 		
-		TileLevel level = new TileLevel(width,height);
+		TileLevel level = new TileLevel(id,width,height);
 		
 		//Load layers
 		NodeList layerNodes = doc.getElementsByTagName("layer");
