@@ -62,7 +62,7 @@ public class LevelLoader {
 		for (int i = 0; i < layerNodes.getLength();i++) {
 			Node layerNode = layerNodes.item(i);
 			NodeList tileNodes = layerNode.getChildNodes().item(1).getChildNodes(); //Jumps over <data> tag
-			level.addLayer(loadLayer(tileNodes),tilesetImages.get(i)); 
+			level.addLayer(loadLayer(tileNodes),tilesetImages.get(0)); 
 		}
 		return level;
 	}
