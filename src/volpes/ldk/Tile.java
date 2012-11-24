@@ -45,6 +45,22 @@ public class Tile {
 			return false;
 		}
 	}
+	
+	public int getPropertyAsInt(String key) {
+		if (properties.containsKey(key)) {
+			return Integer.parseInt(properties.get(key));
+		} else {
+			return 0;
+		}
+	}
+	
+	public String getPropertyAsString(String key) {
+		if (properties.containsKey(key)) {
+			return properties.get(key);
+		} else {
+			return null;
+		}
+	}
 
 	
 	public BufferedImage getImage() {
