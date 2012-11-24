@@ -23,66 +23,57 @@ import java.awt.Graphics;
  * @version 0.1
  */
 public abstract class Entity {
-
-	private float x;
 	
-	private float y;
+	private int x;
+	
+	private int y;
 	
 	public abstract void render(GameContainer container,Graphics g);
+	
+	public Entity(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
 
 	/**
 	 * @return X coordinate as a float
 	 */
-	public float getX() {
+	public int getX() {
 		return x;
 	}
 	
 	/**
 	 * @return Y coordinate as a float
 	 */
-	public float getY() {
+	public int getY() {
 		return y;
-	}
-	
-	/**
-	 * @return X coordinate rounded as an integer
-	 */
-	public int getIntX() {
-		return (int)x;
-	}
-	
-	/**
-	 * @return Y coordinate rounded as an integer
-	 */
-	public int getIntY() {
-		return (int)y;
 	}
 	
 	/**
 	 * @param x Sets X coordinate
 	 */
-	public void setX(float x) {
+	public void setX(int x) {
 		this.x = x;
 	}
 	
 	/**
 	 * @param y Sets Y coordinate
 	 */
-	public void setY(float y) {
+	public void setY(int y) {
 		this.y = y;
 	}
 	
 	/**
 	 * @param x Increases X coordinate
 	 */
-	public void incX(float x) {
+	public void incX(int x) {
 		this.x += x;
 	}
 	
 	/**
 	 * @param y Increases Y coordinate
 	 */
-	public void incY(float y) {
+	public void incY(int y) {
 		this.y += y;
 	}
 	
