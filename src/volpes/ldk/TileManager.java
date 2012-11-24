@@ -38,7 +38,8 @@ public class TileManager {
 	
 	public Tile getType(int i,int sheet) throws LDKException{
 		try {
-			return sheets.get(sheet).get((i-1) - (sheet*64));
+			//return sheets.get(sheet).get((i-1) - (sheet*64));
+			return sheets.get(sheet).get((i-1));
 			
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println(i);
