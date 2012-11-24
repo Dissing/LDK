@@ -18,6 +18,7 @@ package volpes.ldk;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Lasse Dissing Hansen
@@ -29,7 +30,7 @@ public class AnimationSheet {
 	public static final int TEMPSTATE = 1;
 	public static final int ALTSTATE = 2;
 
-	private ArrayList<BufferedImage> sprites = new ArrayList<BufferedImage>();
+	private List<BufferedImage> sprites = new ArrayList<BufferedImage>();
 	private int state;
 	private int id1, id2;
 	private int time;
@@ -55,6 +56,15 @@ public class AnimationSheet {
 						tilesize, tilesize));
 			}
 		}
+	}
+	
+	protected AnimationSheet(List<BufferedImage> sprites) {
+		state = 0;
+		id1 = 0;
+		id2 = 0;
+		time = 0;
+		currentTime = 0;
+		this.sprites = sprites;
 	}
 
 	/**
@@ -144,6 +154,10 @@ public class AnimationSheet {
 
 	public int getState() {
 		return state;
+	}
+	
+	public AnimationSheet clone() {
+		return new AnimationSheet(sprites);
 	}
 
 }
