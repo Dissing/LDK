@@ -75,6 +75,14 @@ public class TileLevel {
 		}
 	}
 	
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
 	/**
 	 * Renders the map
 	 * @param container The game container
