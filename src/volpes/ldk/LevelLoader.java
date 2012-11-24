@@ -65,6 +65,7 @@ public class LevelLoader {
 		Element infoElement = (Element)doc.getFirstChild();
 		int width = Integer.parseInt(infoElement.getAttribute("width"));
 		int height = Integer.parseInt(infoElement.getAttribute("height"));
+		int tilesize = Integer.parseInt(infoElement.getAttribute("tilewidth"));
 		
 		//Load tilesets
 		NodeList tilesetNodes = doc.getElementsByTagName("tileset");
@@ -77,7 +78,7 @@ public class LevelLoader {
 			tilesetImages.add(loadTileSheet(path));
 		}
 		
-		TileLevel level = new TileLevel(id,width,height);
+		TileLevel level = new TileLevel(id,width,height,tilesize);
 		
 		//Load layers
 		NodeList layerNodes = doc.getElementsByTagName("layer");

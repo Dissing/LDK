@@ -25,14 +25,14 @@ import java.util.List;
  */
 public class TileManager {
 	
-	private int size = 32;
+	private int size;
 	
 	List<Sheet> sheets = new ArrayList<Sheet>();
 	
 	private int imagesPerSheet = 0;
 	
-	public TileManager() {
-		
+	public TileManager(int tilesize) {
+		size = tilesize;
 	}
 	
 	public Tile getType(int i,int sheet) throws LDKException{
@@ -68,8 +68,8 @@ public class TileManager {
 			int w = image.getWidth();
 			int h = image.getHeight();
 			int index = 0;
-			for (int i = 0; i < h; i += 32) {
-				for (int j = 0; j < w; j += 32) {
+			for (int i = 0; i < h; i += size) {
+				for (int j = 0; j < w; j += size) {
 					Tile tile = new Tile(image.getSubimage(j, i, size, size),index+1);
 					types.add(tile);
 					index++;

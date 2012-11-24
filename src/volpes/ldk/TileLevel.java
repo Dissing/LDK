@@ -30,23 +30,25 @@ public class TileLevel {
 	
 	private int id;
 	
-	private TileManager manager = new TileManager();
+	private TileManager manager;
 	
 	private int width,height;
 
 	private List<Layer> layers = new ArrayList<Layer>();
 	
-	private int tileSize = manager.getSize();
+	private int tileSize;
 	
 	/**
 	 * Creates a new TileLevel with a specified size
 	 * @param width
 	 * @param height
 	 */
-	public TileLevel(int id, int width, int height) {
+	public TileLevel(int id, int width, int height, int tilesize) {
 		this.width = width;
 		this.height = height;
 		this.id = id;
+		this.tileSize = tilesize;
+		manager = new TileManager(tilesize);
 	}
 	
 	/**
