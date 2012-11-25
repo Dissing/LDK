@@ -40,10 +40,12 @@ public class ResourceInstance {
 	
 	private Map<String, AnimationSheet> animationMap;
 	private Map<String, String> stringMap;
+	private Map<String, BufferedImage> imageMap;
 	
 	public ResourceInstance(InputStream is) throws LDKException {
 		stringMap = new HashMap<String,String>();
 		animationMap = new HashMap<String,AnimationSheet>();
+		imageMap = new HashMap<String,BufferedImage>();
 		Document doc = interpretXML(is);
 		loadResources(doc.getElementsByTagName("resource"));
 	}
@@ -87,6 +89,8 @@ public class ResourceInstance {
 					addElementAsString(resourceElement);
 				} else if(type.equals("animation")) {
 					addElementAsAnimation(resourceElement);
+				} else if(type.equals("image")) {
+					addElementAsImage(resourceElement);
 				}
 			}
 		}
@@ -134,6 +138,30 @@ public class ResourceInstance {
 	
 	public final String getString(String ID) {
 		return stringMap.get(ID);
+	}
+	
+	private final void addElementAsImage(Element resourceElement) throws LDKException {
+		loadImage(resourceElement.getAttribute("id"),resourceElement.getTextContent());
+	}
+	
+	public BufferedImage loadImage(String id, String path) throws LDKException {
+		if (path == null || path.length() == 0) 
+			throw new LDKException("Image resource [" + id + "] has invalid path");
+			
+			BufferedImage image = null;
+			
+			try {
+				image = ImageIO.read(ResourceInstance.class.getResourceAsStream(path));
+			} catch (IOException e) {
+				throw new LDKException("Could not load image",e);
+			}
+			this.imageMap.put(id, image);
+			return image;
+	}
+	
+
+	public final BufferedImage getImage(String ID) {
+		return imageMap.get(ID);
 	}
 	
 }
