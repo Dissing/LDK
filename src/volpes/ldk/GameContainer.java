@@ -125,7 +125,7 @@ public class GameContainer extends Canvas implements Runnable {
 	 * @param i The index of the new state
 	 * @throws LDKException On unknown index
 	 */
-	public void setState(int i) throws LDKException{
+	public void gotoState(int i) throws LDKException{
 		try {
 			currentState = states.get(i);
 			if (!currentState.isInitialized()) {
