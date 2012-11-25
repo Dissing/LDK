@@ -199,6 +199,7 @@ public class GameContainer extends Canvas implements Runnable {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, width, height);
 		currentState.render(this, g);
+		g.setColor(Color.WHITE);
 		g.drawString("FPS: " + currentFPS, 20, 20);
 		g.dispose();
 		bs.show();
