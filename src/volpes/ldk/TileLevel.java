@@ -75,6 +75,10 @@ public class TileLevel {
 		}
 	}
 	
+	public void setTile(int tile, int x, int y, int layer) {
+		layers.get(layer).tiles.set(x + y*width, tile);
+	}
+	
 	public int getWidth() {
 		return width;
 	}
