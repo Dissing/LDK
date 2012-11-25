@@ -144,8 +144,21 @@ public class GameContainer extends Canvas implements Runnable {
 		return states.indexOf(currentState);
 	}
 	
+	/**
+	 * Adds a state to the end of the list
+	 * @param state
+	 */
 	public void addState(GameState state) {
 		states.add(state);
+	}
+	
+	/**
+	 * Replaces a state with another
+	 * @param state
+	 * @param i
+	 */
+	public void setState(GameState state, int i) {
+		states.set(i, state);
 	}
 
 	/**
