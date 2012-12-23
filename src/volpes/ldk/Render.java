@@ -104,6 +104,16 @@ public abstract class Render {
     public abstract void rotate(double theta, int x, int y);
 
     /**
+     * Pushes a new matrix onto the transformation stack
+     */
+    public abstract void push();
+
+    /**
+     * Pops the current matrix of the transformation stack
+     */
+    public abstract void pop();
+
+    /**
      * Called every time before rendering a frame
      */
     protected abstract void preRender();
@@ -122,4 +132,6 @@ public abstract class Render {
      * Called after {@link #initScreen()} but before first frame is rendered
      */
     protected abstract void initRender();
+
+    protected abstract void attachInput(Input input);
 }

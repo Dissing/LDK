@@ -33,7 +33,7 @@ public abstract class GameState {
 	 * Rendering should not be done here 
 	 * @param container
 	 */
-	public abstract void update(Core container);
+	public abstract void update(GameContainer container);
 	
 	/**
 	 * Place all rendering here
@@ -41,7 +41,7 @@ public abstract class GameState {
 	 * @param container
 	 * @param g Render to this graphics
 	 */
-	public abstract void render(Core container,Graphics2D g);
+	public abstract void render(GameContainer container,Render g);
 	
 	/**
 	 * A extended wrapper around init()

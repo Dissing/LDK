@@ -15,53 +15,32 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
  */
 package volpes.ldk;
 
-import java.awt.*;
-import java.awt.image.BufferStrategy;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * The main game container that handles the main loop and is the entry point. 
  * @author Lasse Dissing Hansen
  * @since 0.1
  * 
  */
-public class Core extends Canvas implements Runnable {
+public class Core implements Runnable {
 	
-	private static final long serialVersionUID = -8397755606536871949L;
-
 	/* The game runs until this goes false */
 	private boolean running;
-	
-	/* The width of the game in pixles*/
-	public final int width;
-	/*The height of the game in pixels*/
-	public final int height;
 	
 	/* System time at last frame*/
 	private long lastFrame;
 	
-	/*The list that contains all game parts*/
-	private List<GameState> states = new ArrayList<GameState>();
-	/* The current part. This is the state or gamemode that runs currently*/
-	private GameState currentState;
-	
-	private Input input;
-	
 	private final int targetFPS = 1000 / 60;
+
+    private GameContainer container;
+
+    private Render render;
 	
 	/**
 	 * Creates a new game
-	 * @param width The width of the game in pixels
-	 * @param height The height of the game in pixels
 	 */
-	public Core(int width, int height) {
-		this.width = width;
-		this.height = height;
-		input = new Input();
-		this.addMouseListener(input);
-		this.addMouseMotionListener(input);
-		this.addKeyListener(input);
+	public Core() {
+        container = new GameContainer();
+        render = new BasicFrameRender(640,480);
 	}
 
 	/**
@@ -87,9 +66,11 @@ public class Core extends Canvas implements Runnable {
 		initialize();
 		while (running) {
 			getDelta();
-			currentState.update(this);
-			drawToScreen();
+			container.tick();
 			updateFPS();
+            render.preRender();
+            container.render(render);
+            render.postRender();
 			int delta = getDelta();
 			if (delta > targetFPS)
 				delta = targetFPS;
@@ -105,58 +86,14 @@ public class Core extends Canvas implements Runnable {
 	 * Initialises the framework before entering main loop
 	 */
 	private void initialize() {
-		if (states.size() > 0) {
-			try {
-				gotoState(0);
-			} catch (LDKException e) {
-				e.printStackTrace();
-			}
-		} else {
-			new LDKException("You must add states to the game, before start!").printStackTrace();
-			System.exit(1);
-		}
+        render.initScreen();
+        container.initialize();
+        render.attachInput(container.getInput());
+        render.initRender();
+
 	}
 	
-	/**
-	 * Changes the current game state
-	 * @param i The index of the new state
-	 * @throws LDKException On unknown index
-	 */
-	public void gotoState(int i) throws LDKException{
-		try {
-			currentState = states.get(i);
-			if (!currentState.isInitialized()) {
-				currentState.expandedInitalize();
-			}
-		} catch(ArrayIndexOutOfBoundsException e) {
-			throw new LDKException("Unknow state requested!");
-		}
-		
-	}
-	
-	/**
-	 * @return Index of current gamemode
-	 */
-	public int getCurrentState() {
-		return states.indexOf(currentState);
-	}
-	
-	/**
-	 * Adds a state to the end of the list
-	 * @param state
-	 */
-	public void addState(GameState state) {
-		states.add(state);
-	}
-	
-	/**
-	 * Replaces a state with another
-	 * @param state
-	 * @param i
-	 */
-	public void setState(GameState state, int i) {
-		states.set(i, state);
-	}
+
 
 	/**
 	 * @return Current System time in milliseconds
@@ -188,31 +125,9 @@ public class Core extends Canvas implements Runnable {
 		}
 		fps++;
 	}
+
+    public GameContainer getContainer() {
+        return container;
+    }
 	
-	/**
-	 * @return Current Input wrapper
-	 */
-	public Input getInput() {
-		return input;
-	}
-	
-	/**
-	 * Renders the current gamestate and draws to screen
-	 */
-	private void drawToScreen() {
-		BufferStrategy bs = getBufferStrategy();
-		if (bs == null) {
-			createBufferStrategy(2);
-			return;
-		}
-		Graphics2D g = (Graphics2D)bs.getDrawGraphics();
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, width, height);
-		currentState.render(this, g);
-		g.setColor(Color.WHITE);
-		//g.drawString("FPS: " + currentFPS, 20, 20);
-		g.dispose();
-		bs.show();
-		Toolkit.getDefaultToolkit().sync();
-	}
 }

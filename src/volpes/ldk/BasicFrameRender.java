@@ -20,8 +20,10 @@ package volpes.ldk;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.Stack;
 
 /**
  * A basic render using the java2D api.
@@ -37,11 +39,12 @@ public class BasicFrameRender extends  Render {
     private JFrame frame;
     private Canvas canvas;
 
-    public BasicFrameRender(int width, int height, String name) {
+    private Stack<AffineTransform> matrixStack;
+
+    public BasicFrameRender(int width, int height) {
         this.width = width;
         this.height = height;
     }
-
 
     private BufferStrategy bs;
     private Graphics2D g;
@@ -80,6 +83,13 @@ public class BasicFrameRender extends  Render {
     @Override
     protected void initRender() {
         canvas.createBufferStrategy(2);
+    }
+
+    @Override
+    protected void attachInput(Input input) {
+        canvas.addMouseListener(input);
+        canvas.addMouseMotionListener(input);
+        canvas.addKeyListener(input);
     }
 
     @Override
@@ -130,5 +140,15 @@ public class BasicFrameRender extends  Render {
     @Override
     public void rotate(double theta, int x, int y) {
         g.rotate(theta,x,y);
+    }
+
+    @Override
+    public void push() {
+        matrixStack.push(g.getTransform());
+    }
+
+    @Override
+    public void pop() {
+        g.setTransform(matrixStack.pop());
     }
 }
