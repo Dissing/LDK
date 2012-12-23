@@ -15,10 +15,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
  */
 package volpes.ldk;
 
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +26,7 @@ import java.util.List;
  * @version 0.1
  * 
  */
-public class GameContainer extends Canvas implements Runnable {
+public class Core extends Canvas implements Runnable {
 	
 	private static final long serialVersionUID = -8397755606536871949L;
 
@@ -58,7 +55,7 @@ public class GameContainer extends Canvas implements Runnable {
 	 * @param width The width of the game in pixels
 	 * @param height The height of the game in pixels
 	 */
-	public GameContainer(int width, int height) {
+	public Core(int width, int height) {
 		this.width = width;
 		this.height = height;
 		input = new Input();
@@ -66,7 +63,7 @@ public class GameContainer extends Canvas implements Runnable {
 		this.addMouseMotionListener(input);
 		this.addKeyListener(input);
 	}
-	
+
 	/**
 	 * Starts the game in a new Thread
 	 */
@@ -99,7 +96,7 @@ public class GameContainer extends Canvas implements Runnable {
 			try {
 				Thread.sleep(targetFPS - delta);
 			} catch(InterruptedException e) {
-				e.printStackTrace();
+				Thread.currentThread().interrupt();
 			}
 		}
 	}
@@ -110,7 +107,7 @@ public class GameContainer extends Canvas implements Runnable {
 	private void initialize() {
 		if (states.size() > 0) {
 			try {
-				setState(0);
+				gotoState(0);
 			} catch (LDKException e) {
 				e.printStackTrace();
 			}
@@ -213,7 +210,7 @@ public class GameContainer extends Canvas implements Runnable {
 		g.fillRect(0, 0, width, height);
 		currentState.render(this, g);
 		g.setColor(Color.WHITE);
-		g.drawString("FPS: " + currentFPS, 20, 20);
+		//g.drawString("FPS: " + currentFPS, 20, 20);
 		g.dispose();
 		bs.show();
 		Toolkit.getDefaultToolkit().sync();

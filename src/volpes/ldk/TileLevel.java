@@ -92,11 +92,11 @@ public class TileLevel {
 	 * @param container The game container
 	 * @param g The Graphics for drawing the map
 	 */
-	public void render(GameContainer container, Graphics2D g) {
+	public void render(Core container, Graphics2D g) {
 		render(container, g, 0,0);
 	}
 	
-	public void render(GameContainer container, Graphics2D g, int xOffset, int yOffset) {
+	public void render(Core container, Graphics2D g, int xOffset, int yOffset) {
 		for (int layer = 0; layer < layers.size(); layer++) {
 			if (!layers.get(layer).cache) {
 				drawLayer(g,layer,xOffset,yOffset);
