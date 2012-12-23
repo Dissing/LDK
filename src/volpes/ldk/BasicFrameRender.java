@@ -33,17 +33,22 @@ import java.util.Stack;
  */
 public class BasicFrameRender extends  Render {
 
-    private final int width;
-    private final int height;
-
     private JFrame frame;
     private Canvas canvas;
 
+    private Settings settings;
+
+    private int width;
+    private int height;
+    private String windowName;
+
     private Stack<AffineTransform> matrixStack;
 
-    public BasicFrameRender(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public BasicFrameRender(Settings s) {
+        this.width = s.has("width") ? s.getInt("width") : 640;
+        this.height = s.has("height") ? s.getInt("height") : 480;
+        this.windowName = s.has("windowName") ? s.getString("windowName") : "LDK";
+
     }
 
     private BufferStrategy bs;
@@ -66,7 +71,7 @@ public class BasicFrameRender extends  Render {
 
     @Override
     protected void initScreen(){
-        frame = new JFrame("LDK");
+        frame = new JFrame(windowName);
         JPanel panel = new JPanel(new BorderLayout());
         canvas = new Canvas();
         panel.add(canvas);
@@ -90,6 +95,15 @@ public class BasicFrameRender extends  Render {
         canvas.addMouseListener(input);
         canvas.addMouseMotionListener(input);
         canvas.addKeyListener(input);
+    }
+
+    @Override
+    protected void updateSettings(Settings s) {
+        if (width != (s.has("width") ? s.getInt("width") : 640) || height != (s.has("height") ? s.getInt("height") : 480)) {
+            this.width = s.has("width") ? s.getInt("width") : 640;
+            this.height = s.has("height") ? s.getInt("height") : 480;
+            frame.setSize(width,height);
+        }
     }
 
     @Override

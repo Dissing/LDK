@@ -134,4 +134,7 @@ public abstract class Render {
     protected abstract void initRender();
 
     protected abstract void attachInput(Input input);
+
+    protected abstract void updateSettings(Settings settings);
+
 }
