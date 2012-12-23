@@ -9,7 +9,7 @@ import java.awt.Color;
  * @author Lasse Dissing Hansen
  * @since 0.2
  */
-public interface Render {
+public abstract class Render {
 
     /**
      * Draws as much of the image as possible to the current context
@@ -17,7 +17,7 @@ public interface Render {
      * @param x The x coordinate to start drawing from
      * @param y The y coordinate to start drawing from
      */
-    public void drawImage(BufferedImage img,int x, int y);
+    public abstract void drawImage(BufferedImage img,int x, int y);
 
     /**
      * Draws the string to the current context
@@ -25,7 +25,7 @@ public interface Render {
      * @param x The x coordinate to start drawing from
      * @param y The y coordinate to start drawing from
      */
-    public void drawString(String str, int x, int y);
+    public abstract void drawString(String str, int x, int y);
 
     /**
      * Draws a line from the first coordinate to the second
@@ -34,7 +34,7 @@ public interface Render {
      * @param x2 The x coordinate of the line end
      * @param y2 The y coordinate of the line end
      */
-    public void drawLine(int x1, int y1, int x2, int y2);
+    public abstract void drawLine(int x1, int y1, int x2, int y2);
 
     /**
      * Draws the perimeter of a rectangle
@@ -44,7 +44,7 @@ public interface Render {
      * @param width  The width of the rectangle
      * @param height The height of the rectangle
      */
-    public void drawRect(int x, int y, int width, int height);
+    public abstract void drawRect(int x, int y, int width, int height);
 
     /**
      * Draws a rectangle and fills the inside
@@ -53,14 +53,14 @@ public interface Render {
      * @param width The width of the rectangle
      * @param height The height of the rectangle
      */
-    public void fillRect(int x, int y, int width, int height);
+    public abstract void fillRect(int x, int y, int width, int height);
 
     /**
      * Sets the current color of the graphics context
      * All drawing will happen with this color until a new color is specified
      * @param color The color to use
      */
-    public void setColor(Color color);
+    public abstract void setColor(Color color);
 
     /**
      * Applies a scale transformation matrix to the matrix stack
@@ -70,7 +70,7 @@ public interface Render {
      * @param sx The scale factor of the x coordinate
      * @param sy The scale factor of the y coordinate
      */
-    public void scale(float sx, float sy);
+    public abstract void scale(float sx, float sy);
 
     /**
      * Applies a translation transformation matrix to the matrix stack
@@ -80,7 +80,7 @@ public interface Render {
      * @param tx The amount to translate on the x axis
      * @param ty The amount to translate on the y axis
      */
-    public void translate(int tx, int ty);
+    public abstract void translate(int tx, int ty);
 
     /**
      * Applies a rotation transformation matrix to the matrix stack
@@ -89,7 +89,7 @@ public interface Render {
      * [    0           0           1   ]
      * @param theta The angle of rotation in radians
      */
-    public void rotate(double theta);
+    public abstract void rotate(double theta);
 
     /**
      * Rotates around a given center
@@ -101,7 +101,25 @@ public interface Render {
      * @param x The x coordinate of the origin of the rotation
      * @param y The y coordinate of the origin of the rotation
      */
-    public void rotate(double theta, int x, int y);
+    public abstract void rotate(double theta, int x, int y);
 
+    /**
+     * Called every time before rendering a frame
+     */
+    protected abstract void preRender();
 
+    /**
+     * Called every time after a frame
+     */
+    protected abstract void postRender();
+
+    /**
+     * Initialize the screen here
+     */
+    protected abstract void initScreen();
+
+    /**
+     * Called after {@link #initScreen()} but before first frame is rendered
+     */
+    protected abstract void initRender();
 }
