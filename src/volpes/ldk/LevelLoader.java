@@ -31,7 +31,7 @@ import org.w3c.dom.NodeList;
 
 /**
  * @author Lasse Dissing Hansen
- * @version 0.1
+ * @since 0.1
  */
 public class LevelLoader {
 	private static Map<String, TileLevel> levelMap;

@@ -20,7 +20,7 @@ import java.awt.Graphics2D;
 /**
  * Each game state wanting to get called by LDK must extends this
  * @author Lasse Dissing Hansen
- * @version 0.1
+ * @since 0.1
  */
 public abstract class GameState {
 	

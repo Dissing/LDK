@@ -24,7 +24,7 @@ import java.awt.image.BufferedImage;
  * Optimises the image to the native colour model
  * Yet to find a device where this matters, but who knows...
  * @author Lasse Dissing Hansen
- * @version 0.1
+ * @since 0.1
  */
 public class ImageOptimizer {
 	public static BufferedImage optimize(BufferedImage image) {

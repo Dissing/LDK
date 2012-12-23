@@ -18,7 +18,7 @@ package volpes.ldk;
 /**
  * A interface for inputlisteners to attach to {@link Input#addListener(InputListener)}
  * @author Lasse Dissing Hansen
- * @version 0.1
+ * @since 0.1
  */
 public interface InputListener {
 	

@@ -20,7 +20,7 @@ import java.awt.Graphics;
 /**
  * Basic Entity class providing basic interface and position
  * @author Lasse Dissing Hansen
- * @version 0.1
+ * @since 0.1
  */
 public abstract class Entity {
 	

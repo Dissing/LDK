@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * The main game container that handles the main loop and is the entry point. 
  * @author Lasse Dissing Hansen
- * @version 0.1
+ * @since 0.1
  * 
  */
 public class Core extends Canvas implements Runnable {

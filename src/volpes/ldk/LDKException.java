@@ -18,7 +18,7 @@ package volpes.ldk;
 /**
  * A generic error for the LDK game development kit
  * @author Lasse Dissing Hansen
- * @version 0.1
+ * @since 0.1
  */
 public class LDKException extends Exception {
 	

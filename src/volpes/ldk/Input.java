@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * A simplified wrapper around vanilla input listeners
  * @author Lasse Dissing Hansen
- * @version 0.1
+ * @since 0.1
  */
 public class Input implements MouseListener, MouseMotionListener, KeyListener {
 	
