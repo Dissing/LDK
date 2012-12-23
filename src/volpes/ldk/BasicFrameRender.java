@@ -42,7 +42,7 @@ public class BasicFrameRender extends  Render {
     private int height;
     private String windowName;
 
-    private Stack<AffineTransform> matrixStack;
+    private Stack<AffineTransform> matrixStack = new Stack<AffineTransform>();
 
     public BasicFrameRender(Settings s) {
         this.width = s.has("width") ? s.getInt("width") : 640;
