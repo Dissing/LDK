@@ -20,7 +20,7 @@ package volpes.ldk;
  * @author Lasse Dissing Hansen
  * @since 0.1
  */
-public class LDKException extends Exception {
+public class LDKException extends RuntimeException {
 	
 	private static final long serialVersionUID = -1854857273279338810L;
 
