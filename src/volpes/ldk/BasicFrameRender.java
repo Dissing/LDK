@@ -36,8 +36,6 @@ public class BasicFrameRender extends  Render {
     private JFrame frame;
     private Canvas canvas;
 
-    private Settings settings;
-
     private int width;
     private int height;
     private String windowName;
