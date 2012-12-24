@@ -18,12 +18,8 @@
 
 package volpes.ldk;
 
-import org.yaml.snakeyaml.Yaml;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -32,56 +28,168 @@ import java.util.Map;
  */
 public class Settings {
 
-    private Map<String,Object> data;
+    private Map<String,Object> data = new HashMap<String,Object>();
 
     private boolean updated;
 
+
+    /**
+     * Creates a new settings object, given a file name
+     * @param file The name of the engine configurations file
+     */
     public Settings(String file) {
         InputStream is = null;
         try {
-            is = new FileInputStream(new File("engine.yml"));
+            is = new FileInputStream(new File("engine.ini"));
         } catch(FileNotFoundException e) {
             e.printStackTrace();
         }
-        Yaml yaml = new Yaml();
-        data = (Map<String,Object>) yaml.load(is);
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("engine.ini"));
+
+            try {
+                String line = null;
+                String parts[] = null;
+                int index = 0;
+                while((line = reader.readLine()) != null) {
+                    index++;
+                    if (line.contains(":")) {
+                        parts = line.split(":");
+                        parts[0] = parts[0].trim();
+                        parts[1] = parts[1].trim();
+                        if (parts[1].matches("-?\\d+")) {
+                            data.put(parts[0],Integer.parseInt(parts[1]));
+                        } else if (parts[1].matches("-?\\d+(\\.\\d+)?")) {
+                            data.put(parts[0],Float.parseFloat(parts[1]));
+                        } else if (parts[1].equalsIgnoreCase("true") || parts[1].equalsIgnoreCase("false")) {
+                            data.put(parts[0],Boolean.parseBoolean(parts[1]));
+                        } else {
+                            data.put(parts[0],parts[1]);
+                        }
+                    } else {
+                        throw new LDKException("Line " + index + " expected a :");
+                    }
+                }
+            } finally {
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.err.println("You must provide a \"engine.ini\" file at the game root");
+            System.exit(1);
+        }
+
     }
 
+    /**
+     * Checks if such a key is to be found in the settings map
+     * @param key
+     * @return
+     */
     public boolean has(String key) {
         return data.containsKey(key);
     }
 
+    /**
+     * Returns a boolean from the settings map
+     * If there is no such key to be found or the value is not a boolean
+     * the function will return an unspecified exception
+     * Please use the ternary operator in combination with {@link #has(String)}
+     *
+     * boolean result = has(key) ? getBool(key) : default
+     *
+     * @param key The key to lookup in the map
+     * @return The value of the setting
+     */
     public boolean getBool(String key) {
         return (boolean)data.get(key);
     }
 
+    /**
+     * Returns a integer from the settings map
+     * If there is no such key to be found or the value is not a integer
+     * the function will return an unspecified exception
+     * Please use the ternary operator in combination with {@link #has(String)}
+     *
+     * boolean result = has(key) ? getInt(key) : default
+     *
+     * @param key The key to lookup in the map
+     * @return The value of the setting
+     */
     public int getInt(String key) {
         return (int)data.get(key);
     }
 
+    /**
+     * Returns a float from the settings map
+     * If there is no such key to be found or the value is not a float
+     * the function will return an unspecified exception
+     * Please use the ternary operator in combination with {@link #has(String)}
+     *
+     * boolean result = has(key) ? getFloat(key) : default
+     *
+     * @param key The key to lookup in the map
+     * @return The value of the setting
+     */
     public float getFloat(String key) {
         return (float)data.get(key);
     }
 
+    /**
+     * Returns a String from the settings map
+     * If there is no such key to be found or the value is not a String
+     * the function will return an unspecified exception
+     * Please use the ternary operator in combination with {@link #has(String)}
+     *
+     * boolean result = has(key) ? getString(key) : default
+     *
+     * @param key The key to lookup in the map
+     * @return The value of the setting
+     */
     public String getString(String key) {
         return (String)data.get(key);
     }
 
+
+    /**
+     * Sets the entry with the specified key to the value
+     * If no such entry exist a new one will be created
+     * @param key The key of the entry
+     * @param value The value of the entry
+     */
     public void setBool(String key, boolean value) {
         updated = true;
         data.put(key,value);
     }
 
+    /**
+     * Sets the entry with the specified key to the value
+     * If no such entry exist a new one will be created
+     * @param key The key of the entry
+     * @param value The value of the entry
+     */
     public void setInt(String key, int value) {
         updated = true;
         data.put(key,value);
     }
 
+    /**
+     * Sets the entry with the specified key to the value
+     * If no such entry exist a new one will be created
+     * @param key The key of the entry
+     * @param value The value of the entry
+     */
     public void setFloat(String key, float value) {
         updated = true;
         data.put(key,value);
     }
 
+    /**
+     * Sets the entry with the specified key to the value
+     * If no such entry exist a new one will be created
+     * @param key The key of the entry
+     * @param value The value of the entry
+     */
     public void setString(String key, String value) {
         updated = true;
         data.put(key,value);
