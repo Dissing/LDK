@@ -37,16 +37,9 @@ public class Settings {
      * Creates a new settings object, given a file name
      * @param file The name of the engine configurations file
      */
-    public Settings(String file) {
-        InputStream is = null;
+    public Settings(String filename) {
         try {
-            is = new FileInputStream(new File("engine.ini"));
-        } catch(FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("engine.ini"));
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
 
             try {
                 String line = null;
@@ -75,7 +68,7 @@ public class Settings {
                 reader.close();
             }
         } catch (IOException e) {
-            System.err.println("You must provide a \"engine.ini\" file at the game root");
+            System.err.println("Unable to locate the engine configuration file \"" + filename + "\" at the games root directory");
             System.exit(1);
         }
 
