@@ -31,6 +31,8 @@ public class GameContainer {
     /* The current part. This is the state or gamemode that runs currently*/
     private GameState currentState;
 
+    public ResourceManager manager = new ResourceManager();
+
     private Input input;
 
     public GameContainer() {
@@ -44,6 +46,12 @@ public class GameContainer {
             new LDKException("You must add states to the game, before start!").printStackTrace();
             System.exit(1);
         }
+        //Attaching standard loaders for resourceManager
+
+
+        manager.initialize("resources.xml");
+
+
     }
 
     protected void tick(Settings settings) {
