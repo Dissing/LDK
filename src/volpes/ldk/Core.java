@@ -41,7 +41,7 @@ public class Core implements Runnable {
 	 * Creates a new game
 	 */
 	public Core() {
-        settings = new Settings("engine.yml");
+        settings = new Settings("engine.ini");
         container = new GameContainer();
         render = new BasicFrameRender(settings);
 	}
