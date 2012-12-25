@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @auther Lasse Dissing Hansen
+ * @author Lasse Dissing Hansen
  * @since 0.1
  */
 public class GameContainer {
@@ -88,7 +88,7 @@ public class GameContainer {
 
     /**
      * Adds a state to the end of the list
-     * @param state
+     * @param state The new state to add to the list
      */
     public void addState(GameState state) {
         states.add(state);
@@ -96,8 +96,8 @@ public class GameContainer {
 
     /**
      * Replaces a state with another
-     * @param state
-     * @param i
+     * @param state The state to inset
+     * @param i The place to inset the state
      */
     public void setState(GameState state, int i) {
         states.set(i, state);

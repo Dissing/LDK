@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @auther Lasse Dissing Hansen
+ * @author Lasse Dissing Hansen
  */
 public class ResourceManager {
 
@@ -23,7 +23,7 @@ public class ResourceManager {
 
     /**
      * Initializes the resource manager and loads ALL resources into memory
-     * @param filename
+     * @param filename The filename of the resource file
      */
     protected void initialize(String filename) {
         InputStream is = null;

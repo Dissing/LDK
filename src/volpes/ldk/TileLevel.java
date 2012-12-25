@@ -48,8 +48,8 @@ public class TileLevel {
 	
 	/**
 	 * Creates a new TileLevel with a specified size
-	 * @param width
-	 * @param height
+	 * @param width The width of tiles across the level
+	 * @param height The height of tiles across the level
 	 */
 	public TileLevel(int id, int width, int height, int tilesize) {
 		this.width = width;
@@ -124,8 +124,8 @@ public class TileLevel {
 	
 	/**
 	 * Adds a layer to the rendering process
-	 * @param layer
-	 * @param tileSheet
+	 * @param layer The layer to add
+	 * @param tileSheet The The tileSheet to use for drawing the layer
 	 */
 	public void addLayer(List<Integer> layer,BufferedImage tileSheet) {
 		layers.add(new Layer(layer));
@@ -158,8 +158,8 @@ public class TileLevel {
 	 * Caches a layer to a BufferedImage for optimised drawing
 	 * The background can not change will being cached
 	 * To disable caching again set cache to false
-	 * @param cache 
-	 * @param index
+	 * @param cache Whether the layer should be cached or not
+	 * @param index The number of the layer to be cached
 	 */
 	public void cacheLayer(boolean cache, int index) {
 		if (cache) {

@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @auther Lasse Dissing Hansen
+ * @author Lasse Dissing Hansen
  */
 public class ImageLoader implements ResourceLoader {
 

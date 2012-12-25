@@ -21,7 +21,7 @@ package volpes.ldk;
 import org.w3c.dom.Element;
 
 /**
- * @auther Lasse Dissing Hansen
+ * @author Lasse Dissing Hansen
  */
 public interface ResourceLoader {
 
@@ -44,7 +44,7 @@ public interface ResourceLoader {
     /**
      * Loads a new resource
      * Only to be called by the manager
-     * @param xmlElement
+     * @param xmlElement The XML element from the resource file
      */
     public void load(Element xmlElement);
 

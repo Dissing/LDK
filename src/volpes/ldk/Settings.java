@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @auther Lasse Dissing Hansen
+ * @author Lasse Dissing Hansen
  * @since 0.2
  */
 public class Settings {
@@ -35,7 +35,7 @@ public class Settings {
 
     /**
      * Creates a new settings object, given a file name
-     * @param file The name of the engine configurations file
+     * @param filename The name of the engine configurations file
      */
     public Settings(String filename) {
         try {
@@ -76,8 +76,8 @@ public class Settings {
 
     /**
      * Checks if such a key is to be found in the settings map
-     * @param key
-     * @return
+     * @param key The key to lookup
+     * @return True if the map contains such a key
      */
     public boolean has(String key) {
         return data.containsKey(key);

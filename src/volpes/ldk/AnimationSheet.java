@@ -105,7 +105,7 @@ public class AnimationSheet {
 	 *            The first part of the animation
 	 * @param secondID
 	 *            The second part of the animation
-	 * @param time
+	 * @param time The frames between each switch
 	 */
 	public void setAltState(int firstID, int secondID, int time) {
 		this.id1 = firstID;
