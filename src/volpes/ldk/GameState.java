@@ -31,14 +31,14 @@ public abstract class GameState {
 	/**
 	 * Place all world updates here
 	 * Rendering should not be done here 
-	 * @param container The global {@GameContainer} used to control and access the engine
+	 * @param container The global GameContainer used to control and access the engine
 	 */
 	public abstract void update(GameContainer container, Settings settings);
 	
 	/**
 	 * Place all rendering here
 	 * There should be no side-effects in game here
-	 * @param container The global {@GameContainer} used to control and access the engine
+	 * @param container The global GameContainer used to control and access the engine
 	 * @param g Render to this graphics
 	 */
 	public abstract void render(GameContainer container,Settings settings,Render g);
