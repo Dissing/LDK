@@ -42,8 +42,8 @@ public class Settings {
             BufferedReader reader = new BufferedReader(new FileReader(filename));
 
             try {
-                String line = null;
-                String parts[] = null;
+                String line;
+                String parts[];
                 int index = 0;
                 while((line = reader.readLine()) != null) {
                     index++;

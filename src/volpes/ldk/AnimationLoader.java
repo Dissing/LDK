@@ -56,7 +56,7 @@ public class AnimationLoader implements ResourceLoader {
         if (path == null || path.length() == 0)
             System.err.println("Image resource [" + id + "] has invalid path");
 
-        BufferedImage image = null;
+        BufferedImage image;
         try {
             InputStream is = new FileInputStream(new File(path));
             image = ImageIO.read(is);

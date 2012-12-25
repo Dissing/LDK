@@ -44,13 +44,13 @@ public class ResourceManager {
      */
     public static Document parseXML(InputStream is) throws LDKException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder documentBuilder = null;
+        DocumentBuilder documentBuilder;
         try {
             documentBuilder = documentBuilderFactory.newDocumentBuilder();
         }   catch (ParserConfigurationException e) {
             throw new LDKException("Unable to load resources",e);
         }
-        Document doc = null;
+        Document doc;
         try {
             doc = documentBuilder.parse(is);
         }   catch (SAXException e) {

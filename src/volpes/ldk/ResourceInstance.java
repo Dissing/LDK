@@ -52,13 +52,13 @@ public class ResourceInstance {
 	
 	public static Document interpretXML(InputStream is) throws LDKException{
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder docBuilder = null;
+		DocumentBuilder docBuilder;
 		try {
 			docBuilder = docBuilderFactory.newDocumentBuilder();
 		} catch (ParserConfigurationException e) {
 			throw new LDKException("Could not load resources",e);
 		}
-		Document doc = null;
+		Document doc;
 		try {
 			doc = docBuilder.parse(is);
 			is.close();
@@ -104,7 +104,7 @@ public class ResourceInstance {
 		if (path == null || path.length() == 0) 
 			throw new LDKException("Image resource [" + id + "] has invalid path");
 			
-			BufferedImage image = null;
+			BufferedImage image;
 			
 			try {
 				image = ImageIO.read(ResourceInstance.class.getResourceAsStream(path));
@@ -148,7 +148,7 @@ public class ResourceInstance {
 		if (path == null || path.length() == 0) 
 			throw new LDKException("Image resource [" + id + "] has invalid path");
 			
-			BufferedImage image = null;
+			BufferedImage image;
 			
 			try {
 				image = ImageIO.read(ResourceInstance.class.getResourceAsStream(path));
