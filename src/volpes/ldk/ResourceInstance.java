@@ -35,7 +35,9 @@ import org.xml.sax.SAXException;
 /**
  * @author Lasse Dissing Hansen
  * @since 0.1
+ * @deprecated use GameContainers ResourceManager instead
  */
+@Deprecated
 public class ResourceInstance {
 	
 	private Map<String, AnimationSheet> animationMap;

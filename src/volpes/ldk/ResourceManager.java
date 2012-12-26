@@ -4,11 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,35 +29,7 @@ public class ResourceManager {
             System.err.println("Unable to locate the resource file \""+filename+"\" at the games root directory");
             System.exit(1);
         }
-        loadResources(parseXML(is));
-    }
-
-    /**
-     * Utility functions that wraps much of the xml boilerplate code.
-     * @param is The inpustream of the XML file
-     * @return The {@link Document} of the XML file
-     * @throws LDKException
-     */
-    public static Document parseXML(InputStream is) throws LDKException {
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder documentBuilder;
-        try {
-            documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        }   catch (ParserConfigurationException e) {
-            throw new LDKException("Unable to load resources",e);
-        }
-        Document doc;
-        try {
-            doc = documentBuilder.parse(is);
-        }   catch (SAXException e) {
-            throw new LDKException("Unable to load resources",e);
-        }   catch (IOException e) {
-            throw new LDKException("Unable to load resources",e);
-        }
-
-        doc.getDocumentElement().normalize();
-
-        return doc;
+        loadResources(Parsers.parseXML(is));
     }
 
     private void loadResources(Document doc) {
