@@ -49,6 +49,7 @@ public class GameContainer {
         //Attaching standard loaders for resourceManager
         manager.attachLoader(new ImageLoader(),"image");
         manager.attachLoader(new AnimationLoader(),"animation");
+        manager.attachLoader(new TiledLoader(),"tiledmap");
 
         manager.initialize("resources.xml");
 
