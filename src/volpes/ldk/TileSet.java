@@ -56,10 +56,78 @@ public class TileSet {
         }
     }
 
+
+    /**
+     * Returns the tile image of the index
+     * @param index The index of the tile image
+     * @return The tile image
+     */
     public BufferedImage get(int index) {
         return tiles.get(index-1);
     }
 
+    /**
+     * Returns the name of the tile set
+     * @return The name
+     */
+    public String getName() {
+        return name;
+    }
 
+    /**
+     * Returns the width of each tile
+     * @return The tile width
+     */
+    public int getTileWidth() {
+        return tileWidth;
+    }
+
+    /**
+     * Returns the height of each tile
+     * @return The tile height
+     */
+    public int getTileHeight() {
+        return tileHeight;
+    }
+
+    /**
+     * Returns the number of pixels between each tile
+     * @return The spacing
+     */
+    public int getSpacing() {
+        return spacing;
+    }
+
+    /**
+     * Returns the number of pixels margin the tile set
+     * @return The margin
+     */
+    public int getMargin() {
+        return margin;
+    }
+
+    /**
+     * Returns the number of tiles spanning on the x-axis
+     * @return Tiles along the x-axis
+     */
+    public int getWidth() {
+        return width;
+    }
+
+    /**
+     * Returns the number of tiles spanning on the y-axis
+     * @return Tiles along the y-axis
+     */
+    public int getHeight() {
+        return height;
+    }
+
+    /**
+     * Gets the whole sprite sheet in one image
+     * @return The sprite sheet
+     */
+    public BufferedImage getSource() {
+        return source;
+    }
 
 }
