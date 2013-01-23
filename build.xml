@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="build" name="LDK">
+
+    <property name="src" value="src"/>
+    <property name="build" value="build"/>
+    <property name="classes" value="${build}/classes"/>
+    <property name="libs" value="libs"/>
+    
+    <path id="classpath">
+        <fileset dir="${libs}" includes="**/*.jar"/>
+    </path>
+
+    <!--ANT 1.7 is required                                        -->
+    
+    <target name="clean">
+        <delete dir="${build}"/>
+    </target>
+    
+    <target name="compile">
+        <mkdir dir="${classes}"/>
+        <javac srcdir="${src}" destdir="${classes}" classpathref="classpath"/>
+    </target>
+    
+    <target name="jar" depends="compile">
+        <jar destfile="${build}/${ant.project.name}.jar" basedir="${classes}">
+            <manifest>
+                <attribute name="Class-Path" value=""/>
+            </manifest>
+        </jar>
+    </target>
+    
+    <target name="build" depends="clean,jar"/>
+    
+</project>
+
