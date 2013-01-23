@@ -130,6 +130,11 @@ public class BasicFrameRender extends  Render {
     }
 
     @Override
+    public void fillArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
+        g.fillArc(x,y,width,height,startAngle,arcAngle);
+    }
+
+    @Override
     public void setColor(Color color) {
         g.setColor(color);
     }

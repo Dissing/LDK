@@ -56,6 +56,17 @@ public abstract class Render {
     public abstract void fillRect(int x, int y, int width, int height);
 
     /**
+     * Draws an arc and fills the inside
+     * @param x The x coordinate of the arc top-left corner
+     * @param y The y coordinate of the arc top-left corner
+     * @param width The width of the arc
+     * @param height The height of the arc
+     * @param startAngle The beginning angle
+     * @param arcAngle The extend of the angle relative to the startAngle
+     */
+    public abstract void fillArc(int x, int y, int width, int height, int startAngle, int arcAngle);
+
+    /**
      * Sets the current color of the graphics context
      * All drawing will happen with this color until a new color is specified
      * @param color The color to use
