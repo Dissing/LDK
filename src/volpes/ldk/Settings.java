@@ -39,7 +39,7 @@ public class Settings {
      */
     public Settings(String filename) {
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(filename)));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(VFS.getFile(filename)));
 
             try {
                 String line;

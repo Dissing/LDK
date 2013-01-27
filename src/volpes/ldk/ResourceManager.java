@@ -24,7 +24,7 @@ public class ResourceManager {
     protected void initialize(String filename) {
         InputStream is = null;
         try {
-            is = new FileInputStream(new File(filename));
+            is = VFS.getFile(filename);
         }  catch (FileNotFoundException e) {
             System.err.println("Unable to locate the resource file \""+filename+"\" at the games root directory");
             System.exit(1);
