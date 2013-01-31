@@ -28,16 +28,16 @@ import java.util.Map;
  */
 public class Settings {
 
-    private Map<String,Object> data = new HashMap<String,Object>();
+    private static Map<String,Object> data = new HashMap<String,Object>();
 
-    private boolean updated;
+    private static boolean updated;
 
 
     /**
      * Creates a new settings object, given a file name
      * @param filename The name of the engine configurations file
      */
-    public Settings(String filename) {
+    public static void init(String filename) {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(VFS.getFile(filename)));
 
@@ -79,7 +79,7 @@ public class Settings {
      * @param key The key to lookup
      * @return True if the map contains such a key
      */
-    public boolean has(String key) {
+    public static boolean has(String key) {
         return data.containsKey(key);
     }
 
@@ -94,8 +94,8 @@ public class Settings {
      * @param key The key to lookup in the map
      * @return The value of the setting
      */
-    public boolean getBool(String key) {
-        return (boolean)data.get(key);
+    public static boolean getBool(String key) {
+        return (Boolean)data.get(key);
     }
 
     /**
@@ -109,8 +109,8 @@ public class Settings {
      * @param key The key to lookup in the map
      * @return The value of the setting
      */
-    public int getInt(String key) {
-        return (int)data.get(key);
+    public static int getInt(String key) {
+        return (Integer)data.get(key);
     }
 
     /**
@@ -124,8 +124,8 @@ public class Settings {
      * @param key The key to lookup in the map
      * @return The value of the setting
      */
-    public float getFloat(String key) {
-        return (float)data.get(key);
+    public static float getFloat(String key) {
+        return (Float)data.get(key);
     }
 
     /**
@@ -139,7 +139,7 @@ public class Settings {
      * @param key The key to lookup in the map
      * @return The value of the setting
      */
-    public String getString(String key) {
+    public static String getString(String key) {
         return (String)data.get(key);
     }
 
@@ -150,7 +150,7 @@ public class Settings {
      * @param key The key of the entry
      * @param value The value of the entry
      */
-    public void setBool(String key, boolean value) {
+    public static void setBool(String key, boolean value) {
         updated = true;
         data.put(key,value);
     }
@@ -161,7 +161,7 @@ public class Settings {
      * @param key The key of the entry
      * @param value The value of the entry
      */
-    public void setInt(String key, int value) {
+    public static void setInt(String key, int value) {
         updated = true;
         data.put(key,value);
     }
@@ -172,7 +172,7 @@ public class Settings {
      * @param key The key of the entry
      * @param value The value of the entry
      */
-    public void setFloat(String key, float value) {
+    public static void setFloat(String key, float value) {
         updated = true;
         data.put(key,value);
     }
@@ -183,12 +183,12 @@ public class Settings {
      * @param key The key of the entry
      * @param value The value of the entry
      */
-    public void setString(String key, String value) {
+    public static void setString(String key, String value) {
         updated = true;
         data.put(key,value);
     }
 
-    protected boolean isUpdated() {
+    protected static boolean isUpdated() {
         return updated;
     }
 }

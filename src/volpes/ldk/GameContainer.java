@@ -56,12 +56,12 @@ public class GameContainer {
 
     }
 
-    protected void tick(Settings settings) {
-        currentState.update(this,settings);
+    protected void tick() {
+        currentState.update(this);
     }
 
-    protected void render(Settings settings, Render render) {
-        currentState.render(this,settings,render);
+    protected void render(Render render) {
+        currentState.render(this,render);
     }
 
     /**

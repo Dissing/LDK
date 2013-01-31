@@ -35,15 +35,13 @@ public class Core implements Runnable {
 
     private Render render;
 
-    private Settings settings;
-	
 	/**
 	 * Creates a new game
 	 */
 	public Core() {
-        settings = new Settings("engine.ini");
+        Settings.init("engine.ini");
         container = new GameContainer();
-        render = new BasicFrameRender(settings);
+        render = new BasicFrameRender();
 	}
 
 	/**
@@ -69,12 +67,12 @@ public class Core implements Runnable {
 		initialize();
 		while (running) {
 			getDelta();
-			container.tick(settings);
+			container.tick();
 			updateFPS();
-            if (settings.isUpdated())
-                render.updateSettings(settings);
+            if (Settings.isUpdated())
+                render.updateSettings();
             render.preRender();
-            container.render(settings,render);
+            container.render(render);
             render.postRender();
 			int delta = getDelta();
 			if (delta > targetFPS)

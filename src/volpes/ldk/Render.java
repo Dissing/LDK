@@ -146,6 +146,6 @@ public abstract class Render {
 
     protected abstract void attachInput(Input input);
 
-    protected abstract void updateSettings(Settings settings);
+    protected abstract void updateSettings();
 
 }

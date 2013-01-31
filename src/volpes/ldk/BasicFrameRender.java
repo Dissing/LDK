@@ -42,10 +42,10 @@ public class BasicFrameRender extends  Render {
 
     private Stack<AffineTransform> matrixStack = new Stack<AffineTransform>();
 
-    public BasicFrameRender(Settings s) {
-        this.width = s.has("width") ? s.getInt("width") : 640;
-        this.height = s.has("height") ? s.getInt("height") : 480;
-        this.windowName = s.has("windowName") ? s.getString("windowName") : "LDK";
+    public BasicFrameRender() {
+        this.width = Settings.has("width") ? Settings.getInt("width") : 640;
+        this.height = Settings.has("height") ? Settings.getInt("height") : 480;
+        this.windowName = Settings.has("windowName") ? Settings.getString("windowName") : "LDK";
 
     }
 
@@ -96,10 +96,10 @@ public class BasicFrameRender extends  Render {
     }
 
     @Override
-    protected void updateSettings(Settings s) {
-        if (width != (s.has("width") ? s.getInt("width") : 640) || height != (s.has("height") ? s.getInt("height") : 480)) {
-            this.width = s.has("width") ? s.getInt("width") : 640;
-            this.height = s.has("height") ? s.getInt("height") : 480;
+    protected void updateSettings() {
+        if (width != (Settings.has("width") ? Settings.getInt("width") : 640) || height != (Settings.has("height") ? Settings.getInt("height") : 480)) {
+            this.width = Settings.has("width") ? Settings.getInt("width") : 640;
+            this.height = Settings.has("height") ? Settings.getInt("height") : 480;
             frame.setSize(width,height);
         }
     }

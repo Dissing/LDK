@@ -33,7 +33,7 @@ public abstract class GameState {
 	 * Rendering should not be done here 
 	 * @param container The global GameContainer used to control and access the engine
 	 */
-	public abstract void update(GameContainer container, Settings settings);
+	public abstract void update(GameContainer container);
 	
 	/**
 	 * Place all rendering here
@@ -41,7 +41,7 @@ public abstract class GameState {
 	 * @param container The global GameContainer used to control and access the engine
 	 * @param g Render to this graphics
 	 */
-	public abstract void render(GameContainer container,Settings settings,Render g);
+	public abstract void render(GameContainer container,Render g);
 	
 	/**
 	 * A extended wrapper around init()
