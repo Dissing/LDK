@@ -16,10 +16,11 @@
  *
  */
 
-package volpes.ldk.client;
+package volpes.ldk.utils;
 
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
+import volpes.ldk.client.LDKException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -36,7 +37,7 @@ public class Parsers {
      * Utility functions that wraps much of the xml boilerplate code.
      * @param is The inpustream of the XML file
      * @return The {@link org.w3c.dom.Document} of the XML file
-     * @throws LDKException
+     * @throws volpes.ldk.client.LDKException
      */
     public static Document parseXML(InputStream is) throws LDKException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();

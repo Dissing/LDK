@@ -15,7 +15,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  */
-package volpes.ldk.client;
+package volpes.ldk.utils;
 
 import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;

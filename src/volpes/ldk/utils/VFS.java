@@ -16,7 +16,7 @@
  *
  */
 
-package volpes.ldk.client;/*
+package volpes.ldk.utils;/*
  * Copyright (C) 2013 Lasse Dissing Hansen
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -47,7 +47,7 @@ public class VFS {
      * Checks both inside Jar and game root
      * @param path The path to the file
      * @return An {@link InputStream} to the file
-     * @throws LDKException If no such file is found
+     * @throws volpes.ldk.client.LDKException If no such file is found
      */
     public static InputStream getFile(String path) throws FileNotFoundException {
         InputStream is;

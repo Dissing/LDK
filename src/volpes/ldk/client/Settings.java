@@ -18,6 +18,8 @@
 
 package volpes.ldk.client;
 
+import volpes.ldk.utils.VFS;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;

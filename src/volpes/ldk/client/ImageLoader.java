@@ -19,6 +19,7 @@
 package volpes.ldk.client;
 
 import org.w3c.dom.Element;
+import volpes.ldk.utils.ImageOptimizer;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

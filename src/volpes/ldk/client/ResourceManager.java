@@ -22,6 +22,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import volpes.ldk.utils.Parsers;
+import volpes.ldk.utils.VFS;
 
 import java.io.*;
 import java.util.HashMap;
