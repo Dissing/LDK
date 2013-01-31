@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 Lasse Dissing Hansen
+ * Copyright (C) 2013 Lasse Dissing Hansen
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -15,48 +15,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  */
-
-package volpes.ldk;
-
-import org.w3c.dom.Element;
+package volpes.ldk.client;
 
 /**
+ * A interface for inputlisteners to attach to {@link Input#addListener(InputListener)}
  * @author Lasse Dissing Hansen
+ * @since 0.1
  */
-public interface ResourceLoader {
-
-    /**
-     * Called right after being attached to the manager
-     */
-    public void initialize();
-
-
-    //TODO Actually call this somewhere
-    public void shutdown();
-
-    /**
-     * Returns the resource with the given id
-     * @param id The id of the resource
-     * @return The resource
-     */
-    public Object get(String id);
-
-    /**
-     * Loads a new resource
-     * Only to be called by the manager
-     * @param xmlElement The XML element from the resource file
-     */
-    public void load(Element xmlElement);
-
-    /**
-     * Returns the loaderID also known as the resource type
-     * @return The loaderID
-     */
-    public String getLoaderID();
-
-    /**
-     * Returns the number of resources currently loaded by this loader
-     * @return The total amount of resources loaded
-     */
-    public int getNumberOfLoadedObjects();
+public interface InputListener {
+	
+	public void keyPressed(int key);
+	
+	public void keyReleased(int key);
+	
+	public void mouseMoved(int x, int y);
+	
+	public void mousePressed(int x, int y, int button);
+	
+	public void mouseReleased(int x, int y, int button);
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 Lasse Dissing Hansen
+ * Copyright (C) 2013 Lasse Dissing Hansen
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -16,9 +16,8 @@
  *
  */
 
-package volpes.ldk;
+package volpes.ldk.client;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
 

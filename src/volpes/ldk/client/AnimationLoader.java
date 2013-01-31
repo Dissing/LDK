@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 Lasse Dissing Hansen
+ * Copyright (C) 2013 Lasse Dissing Hansen
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -16,7 +16,7 @@
  *
  */
 
-package volpes.ldk;
+package volpes.ldk.client;
 
 import org.w3c.dom.Element;
 
@@ -29,14 +29,15 @@ import java.util.Map;
 /**
  * @author Lasse Dissing Hansen
  */
-public class ImageLoader implements ResourceLoader {
+public class AnimationLoader implements ResourceLoader {
 
-    private Map<String,BufferedImage> imageMap = new HashMap<String,BufferedImage>();
+    private Map<String,AnimationSheet> animationSheetMap = new HashMap<String,AnimationSheet>();
     private int numberOfLoadedObjects = 0;
 
     @Override
     public void initialize() {
     }
+
 
     @Override
     public void shutdown() {
@@ -44,13 +45,14 @@ public class ImageLoader implements ResourceLoader {
 
     @Override
     public Object get(String id) {
-        return imageMap.get(id);
+        return animationSheetMap.get(id);
     }
 
     @Override
     public void load(Element xmlElement) {
         String id = xmlElement.getAttribute("id");
         String path = xmlElement.getTextContent();
+        String tilesize = xmlElement.getAttribute("size");
         if (path == null || path.length() == 0)
             System.err.println("Image resource [" + id + "] has invalid path");
 
@@ -66,14 +68,16 @@ public class ImageLoader implements ResourceLoader {
             System.err.println("Unable to open file " + id + " at " + path);
             return;
         }
-        numberOfLoadedObjects++;
-        imageMap.put(id, image);
-    }
 
+        AnimationSheet sheet = new AnimationSheet(image,Integer.parseInt(tilesize));
+
+        numberOfLoadedObjects++;
+        animationSheetMap.put(id,sheet);
+    }
 
     @Override
     public String getLoaderID() {
-        return "image";
+        return "animation";
     }
 
     @Override

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 Lasse Dissing Hansen
+ * Copyright (C) 2013 Lasse Dissing Hansen
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -16,23 +16,47 @@
  *
  */
 
-package volpes.ldk;
+package volpes.ldk.client;
 
-import java.awt.image.BufferedImage;
-import java.util.List;
+import org.w3c.dom.Element;
 
 /**
  * @author Lasse Dissing Hansen
  */
-public class Layer {
-    public boolean cache = false;
-    public BufferedImage cachedImage;
-    public List<Integer> tiles;
-    public Layer(List<Integer> layer) {
-        this.tiles = layer;
-    }
+public interface ResourceLoader {
 
-    public int get(int index) {
-        return tiles.get(index);
-    }
+    /**
+     * Called right after being attached to the manager
+     */
+    public void initialize();
+
+
+    //TODO Actually call this somewhere
+    public void shutdown();
+
+    /**
+     * Returns the resource with the given id
+     * @param id The id of the resource
+     * @return The resource
+     */
+    public Object get(String id);
+
+    /**
+     * Loads a new resource
+     * Only to be called by the manager
+     * @param xmlElement The XML element from the resource file
+     */
+    public void load(Element xmlElement);
+
+    /**
+     * Returns the loaderID also known as the resource type
+     * @return The loaderID
+     */
+    public String getLoaderID();
+
+    /**
+     * Returns the number of resources currently loaded by this loader
+     * @return The total amount of resources loaded
+     */
+    public int getNumberOfLoadedObjects();
 }

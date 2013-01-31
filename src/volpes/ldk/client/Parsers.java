@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 Lasse Dissing Hansen
+ * Copyright (C) 2013 Lasse Dissing Hansen
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -16,7 +16,7 @@
  *
  */
 
-package volpes.ldk;
+package volpes.ldk.client;
 
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -36,7 +36,7 @@ public class Parsers {
      * Utility functions that wraps much of the xml boilerplate code.
      * @param is The inpustream of the XML file
      * @return The {@link org.w3c.dom.Document} of the XML file
-     * @throws volpes.ldk.LDKException
+     * @throws LDKException
      */
     public static Document parseXML(InputStream is) throws LDKException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
