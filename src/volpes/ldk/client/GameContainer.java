@@ -40,18 +40,20 @@ public class GameContainer {
     }
 
     protected void initialize() {
-        if (states.size() > 0) {
-            gotoState(0);
-        } else {
-            new LDKException("You must add states to the game, before start!").printStackTrace();
-            System.exit(1);
-        }
         //Attaching standard loaders for resourceManager
         manager.attachLoader(new ImageLoader(),"image");
         manager.attachLoader(new AnimationLoader(),"animation");
         manager.attachLoader(new TiledLoader(),"tiledmap");
 
         manager.initialize("resources.xml");
+
+        //Initializing first state
+        if (states.size() > 0) {
+            gotoState(0);
+        } else {
+            new LDKException("You must add states to the game, before start!").printStackTrace();
+            System.exit(1);
+        }
 
 
     }
@@ -72,7 +74,7 @@ public class GameContainer {
         try {
             currentState = states.get(i);
             if (!currentState.isInitialized()) {
-                currentState.expandedInitalize();
+                currentState.expandedInitalize(this);
             }
         } catch(ArrayIndexOutOfBoundsException e) {
             throw new LDKException("Unknown state requested!");

@@ -24,6 +24,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import volpes.ldk.utils.ImageOptimizer;
 import volpes.ldk.utils.Parsers;
+import volpes.ldk.utils.VFS;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -67,7 +68,7 @@ public class TiledLoader implements ResourceLoader{
         InputStream is;
 
         try {
-            is = new FileInputStream(new File(path));
+            is = VFS.getFile(path);
         }  catch (IOException e) {
             System.err.println("Unable to open file " + id + " at " + path);
             return;

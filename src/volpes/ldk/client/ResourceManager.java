@@ -91,6 +91,9 @@ public class ResourceManager {
      * @return The resource
      */
     public Object get(String type, String id) {
+        if (!loaders.containsKey(type)) {
+            throw new LDKException("That resource type is not know by this manager");
+        }
         return loaders.get(type).get(id);
     }
 

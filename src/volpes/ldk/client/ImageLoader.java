@@ -20,6 +20,7 @@ package volpes.ldk.client;
 
 import org.w3c.dom.Element;
 import volpes.ldk.utils.ImageOptimizer;
+import volpes.ldk.utils.VFS;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -57,7 +58,7 @@ public class ImageLoader implements ResourceLoader {
 
         BufferedImage image;
         try {
-            InputStream is = new FileInputStream(new File(path));
+            InputStream is = VFS.getFile(path);
             image = ImageIO.read(is);
             image = ImageOptimizer.optimize(image);
         } catch (FileNotFoundException e) {

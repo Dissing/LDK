@@ -61,7 +61,11 @@ public class TiledMap {
         return height;
     }
 
-    public void render(GameContainer container, Settings settings, Render g, int xOffset, int yOffset) {
+    public void cacheLayer(boolean cache, int layer) {
+        layers.get(layer).cache = cache;
+    }
+
+    public void render(GameContainer container, Render g, int xOffset, int yOffset) {
         for (int layer = 0; layer < layers.size(); layer++) {
             if (!layers.get(layer).cache) {
                 drawLayer(g,layer,xOffset,yOffset);

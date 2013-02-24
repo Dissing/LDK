@@ -30,7 +30,7 @@ public abstract class Entity {
 	
 	private int y;
 	
-	public abstract void render(Core container,Graphics g);
+	public abstract void render(GameContainer container,Render g);
 	
 	public Entity(int x, int y) {
 		this.x = x;

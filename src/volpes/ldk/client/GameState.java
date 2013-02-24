@@ -46,15 +46,15 @@ public abstract class GameState {
 	/**
 	 * A extended wrapper around init()
 	 */
-	protected void expandedInitalize() {
+	protected void expandedInitalize(GameContainer container) {
 		initialized = true;
-		init();
+		init(container);
 	}
 	
 	/**
 	 * Called right before the state is used the first time
 	 */
-	public abstract void init();
+	public abstract void init(GameContainer container);
 	
 	/**
 	 * @return True if the state have been initialised before
