@@ -93,6 +93,7 @@ public class Core implements Runnable {
 				Thread.currentThread().interrupt();
 			}
 		}
+        destroy();
 	}
 	
 	/**
@@ -105,6 +106,11 @@ public class Core implements Runnable {
         render.initRender();
 
 	}
+
+    private void destroy() {
+        render.destroyRender();
+        render.destroyScreen();
+    }
 	
 
 

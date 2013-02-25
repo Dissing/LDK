@@ -162,6 +162,10 @@ public abstract class Render {
      */
     protected abstract void initRender();
 
+    protected abstract void destroyRender();
+
+    protected abstract void destroyScreen();
+
     protected abstract void attachInput(Input input);
 
     protected abstract void updateSettings();
