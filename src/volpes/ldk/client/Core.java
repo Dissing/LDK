@@ -43,7 +43,15 @@ public class Core implements Runnable {
 	public Core() {
         Settings.init("engine.ini");
         container = new GameContainer();
-        render = new BasicFrameRender();
+        String renderType = Settings.has("render") ? Settings.getString("render") : "framerender";
+        if (renderType.equalsIgnoreCase("lwjgl") || renderType.equalsIgnoreCase("opengl")) {
+            render = new LWJGLRender();
+            System.out.println("Using a LWJGL render");
+        } else  {
+            render = new FrameRender();
+            System.out.println("Using a Java-based frame render");
+        }
+
 	}
 
 	/**
@@ -127,6 +135,7 @@ public class Core implements Runnable {
 			lastFPS = getTime();
 			currentFPS = fps;
 			fps = 0;
+            System.out.println("FPS: " + currentFPS);
 		}
 		fps++;
 	}

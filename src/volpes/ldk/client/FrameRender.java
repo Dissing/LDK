@@ -31,7 +31,7 @@ import java.util.Stack;
  * @author Lasse Dissing Hansen
  * @since 0.2
  */
-public class BasicFrameRender extends  Render {
+public class FrameRender extends  Render {
 
     private JFrame frame;
     private Canvas canvas;
@@ -42,7 +42,7 @@ public class BasicFrameRender extends  Render {
 
     private Stack<AffineTransform> matrixStack = new Stack<AffineTransform>();
 
-    public BasicFrameRender() {
+    public FrameRender() {
         this.width = Settings.has("width") ? Settings.getInt("width") : 640;
         this.height = Settings.has("height") ? Settings.getInt("height") : 480;
         this.windowName = Settings.has("windowName") ? Settings.getString("windowName") : "LDK";
