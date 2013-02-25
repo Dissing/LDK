@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * @auther Lasse Dissing Hansen
+ * @author Lasse Dissing Hansen
  */
 public class Parsers {
 
