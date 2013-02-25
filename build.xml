@@ -26,6 +26,7 @@
             <manifest>
                 <attribute name="Class-Path" value=""/>
             </manifest>
+            <zipgroupfileset includes="*.jar" dir="${libs}"/>
         </jar>
     </target>
     
