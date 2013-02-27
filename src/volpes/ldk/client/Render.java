@@ -18,8 +18,8 @@
 
 package volpes.ldk.client;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.Color;
 
 /**
  * The interface of rendering
@@ -141,6 +141,8 @@ public abstract class Render {
      * Pops the current matrix of the transformation stack
      */
     public abstract void pop();
+
+    public abstract void fillPolygon(Polygon polygon);
 
     /**
      * Called every time before rendering a frame

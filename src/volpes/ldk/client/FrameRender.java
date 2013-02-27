@@ -178,4 +178,9 @@ public class FrameRender extends  Render {
     public void pop() {
         g.setTransform(matrixStack.pop());
     }
+
+    @Override
+    public void fillPolygon(Polygon polygon) {
+        g.fillPolygon(polygon);
+    }
 }
