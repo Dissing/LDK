@@ -45,7 +45,7 @@ public class Core implements Runnable {
         container = new GameContainer();
         String renderType = Settings.has("render") ? Settings.getString("render") : "framerender";
         if (renderType.equalsIgnoreCase("lwjgl") || renderType.equalsIgnoreCase("opengl")) {
-            render = new LWJGLRender();
+            render = new OpenGLRender();
             System.out.println("Using a LWJGL render");
         } else  {
             render = new FrameRender();
