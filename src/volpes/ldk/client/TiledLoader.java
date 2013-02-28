@@ -107,7 +107,7 @@ public class TiledLoader implements ResourceLoader{
     private BufferedImage loadTileset(String path, Path tilePath) {
         Path pathObj = tilePath.resolve(new File(path).toPath());
         try {
-            InputStream is = new FileInputStream(pathObj.toFile());
+            InputStream is = VFS.getFile(pathObj.toFile().getPath());
             BufferedImage set = ImageIO.read(is);
             return ImageOptimizer.optimize(set);
         } catch (IOException e) {
