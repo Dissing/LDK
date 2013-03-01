@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="build" name="LDK">
+
+    <property name="src" value="src"/>
+    <property name="build" value="build"/>
+    <property name="classes" value="${build}/classes"/>
+    <property name="libs" value="libs"/>
+    
+    <path id="classpath">
+        <fileset dir="${libs}" includes="**/*.jar"/>
+    </path>
+
+    <!--ANT 1.7 is required                                        -->
+    
+    <target name="clean">
+        <delete dir="${build}"/>
+    </target>
+    
+    <target name="compile">
+        <mkdir dir="${classes}"/>
+        <javac srcdir="${src}" destdir="${classes}" classpathref="classpath"/>
+    </target>
+    
+    <target name="jar" depends="compile">
+        <jar destfile="${build}/${ant.project.name}.jar" basedir="${classes}">
+            <manifest>
+                <attribute name="Class-Path" value=""/>
+            </manifest>
+            <zipgroupfileset includes="*.jar" dir="${libs}"/>
+        </jar>
+    </target>
+    
+    <target name="build" depends="clean,jar"/>
+    <target name="javadoc" depends="build">
+        <javadoc packagenames="volpes.ldk.*"
+               sourcepath="src"
+               defaultexcludes="yes"
+               destdir="doc"
+               author="true"
+               version="true"
+               use="true"
+               windowtitle="LDK Docs">
+        <doctitle><![CDATA[<h1>LDK</h1>]]></doctitle>
+        <bottom><![CDATA[<i>Copyright &#169; 2012-2013 Lasse Dissing Hansen All Rights Reserved.</i>]]></bottom>
+    </javadoc>
+  </target>
+    
+</project>
+
