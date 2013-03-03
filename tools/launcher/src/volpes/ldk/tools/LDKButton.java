@@ -18,8 +18,6 @@
 
 package volpes.ldk.tools;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
-
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
