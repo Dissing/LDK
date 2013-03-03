@@ -55,9 +55,10 @@ public class AnimationLoader implements ResourceLoader {
         String id = xmlElement.getAttribute("id");
         String path = xmlElement.getTextContent();
         String tilesize = xmlElement.getAttribute("size");
-        if (path == null || path.length() == 0)
+        if (path == null || path.length() == 0) {
             System.err.println("Image resource [" + id + "] has invalid path");
-
+            return;
+        }
         BufferedImage image;
         try {
             InputStream is = VFS.getFile(path);
