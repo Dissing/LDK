@@ -68,8 +68,8 @@ public class LWJGLRender {
     public void initializeRender() {
         glViewport(0,0,screen.getWidth(),screen.getHeight());
         glClearColor(0.4f,0.6f,0.9f,0f);
-        int vertShader = loadShader("shaders/shader.vert", ARBVertexShader.GL_VERTEX_SHADER_ARB);
-        int fragShader = loadShader("shaders/shader.frag", ARBFragmentShader.GL_FRAGMENT_SHADER_ARB);
+        int vertShader = 0;
+        int fragShader = 0;
         if (vertShader == 0 || fragShader == 0)
             return;
         programId = ARBShaderObjects.glCreateProgramObjectARB();
