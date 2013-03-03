@@ -144,52 +144,6 @@ public class LWJGLRender {
         return ARBShaderObjects.glGetInfoLogARB(obj,ARBShaderObjects.glGetObjectParameteriARB(obj,ARBShaderObjects.GL_OBJECT_INFO_LOG_LENGTH_ARB));
     }
 
-    private int loadShader(String path, int type) {
-        int shaderId = 0;
-        int compiled = 0;
-
-        try {
-            String src = loadFileAsString(path);
-
-            shaderId = ARBShaderObjects.glCreateShaderObjectARB(type);
-
-            if (shaderId == 0)
-                return 0;
-
-            ARBShaderObjects.glShaderSourceARB(shaderId,src);
-            ARBShaderObjects.glCompileShaderARB(shaderId);
-
-            if (ARBShaderObjects.glGetObjectParameteriARB(shaderId,ARBShaderObjects.GL_OBJECT_COMPILE_STATUS_ARB) == GL11.GL_FALSE) {
-                throw  new RuntimeException("Could not create shader " + getLogInfo(shaderId));
-            }
-        }  catch (Exception e) {
-            e.printStackTrace();
-            ARBShaderObjects.glDeleteObjectARB(shaderId);
-        }
-
-        return shaderId;
-
-    }
-
-    private String loadFileAsString(String path) {
-        StringBuilder src = new StringBuilder();
-        InputStreamReader in = null;
-        BufferedReader reader = null;
-        try {
-            in = new InputStreamReader(VFS.getFile(path));
-            reader = new BufferedReader(in);
-            String line;
-            while ((line = reader.readLine()) != null) {
-                src.append(line).append('\n');
-            }
-            reader.close();
-            in.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return src.toString();
-    }
-
     private int loadPNGTexture(String filename, int textureUnit) {
         ByteBuffer buf = null;
         int tWidth = 0;
