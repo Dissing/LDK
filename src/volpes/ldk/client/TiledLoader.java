@@ -62,8 +62,10 @@ public class TiledLoader implements ResourceLoader{
     public void load(Element xmlElement) {
         String id = xmlElement.getAttribute("id");
         String path = xmlElement.getTextContent();
-        if (path == null || path.length() == 0)
+        if (path == null || path.length() == 0) {
             System.err.println("Image resource [" + id + "] has invalid path");
+            return;
+        }
 
         InputStream is;
 
