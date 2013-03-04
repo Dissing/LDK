@@ -22,7 +22,7 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 
 /**
- * @auther Lasse Dissing Hansen
+ * @author Lasse Dissing Hansen
  */
 public class TiledMap {
 

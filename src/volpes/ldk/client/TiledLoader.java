@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @auther Lasse Dissing Hansen
+ * @author Lasse Dissing Hansen
  */
 public class TiledLoader implements ResourceLoader{
 
