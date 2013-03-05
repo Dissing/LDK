@@ -52,6 +52,12 @@ public class ResourceManager {
         loadResources(Parsers.parseXML(is));
     }
 
+    protected void finalize() {
+        for (ResourceLoader loader : loaders.values()) {
+            loader.shutdown();
+        }
+    }
+
     private void loadResources(Document doc) {
         NodeList resourceNodes = doc.getElementsByTagName("resource");
         int totalResources = resourceNodes.getLength();
