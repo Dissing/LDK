@@ -16,9 +16,10 @@
  *
  */
 
-package volpes.ldk.client;
+package volpes.ldk.client.resourceloaders;
 
 import org.w3c.dom.Element;
+import volpes.ldk.client.ResourceLoader;
 import volpes.ldk.utils.ImageOptimizer;
 import volpes.ldk.utils.VFS;
 

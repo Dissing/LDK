@@ -16,71 +16,92 @@
  *
  */
 
-package volpes.ldk.client;
+package volpes.ldk.client.resourceloaders;
 
+import org.lwjgl.opengl.ARBFragmentShader;
+import org.lwjgl.opengl.ARBShaderObjects;
+import org.lwjgl.opengl.ARBVertexShader;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import volpes.ldk.utils.ImageOptimizer;
+import volpes.ldk.client.ResourceLoader;
+import volpes.ldk.client.opengl.Shader;
+import volpes.ldk.utils.Parsers;
 import volpes.ldk.utils.VFS;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author Lasse Dissing Hansen
  */
-public class AnimationLoader implements ResourceLoader {
+public class ShaderLoader implements ResourceLoader {
 
-    private Map<String,AnimationSheet> animationSheetMap = new HashMap<String,AnimationSheet>();
+    private Map<String,Shader> shaderMap = new HashMap<String,Shader>();
     private int numberOfLoadedObjects = 0;
 
     @Override
     public void initialize() {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
-
 
     @Override
     public void shutdown() {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public Object get(String id) {
-        return animationSheetMap.get(id);
+        return shaderMap.get(id);
     }
 
     @Override
     public void load(Element xmlElement) {
         String id = xmlElement.getAttribute("id");
         String path = xmlElement.getTextContent();
-        String tilesize = xmlElement.getAttribute("size");
         if (path == null || path.length() == 0) {
-            System.err.println("Image resource [" + id + "] has invalid path");
+            System.err.println("Shader [" + id + "] has invalid path");
             return;
         }
-        BufferedImage image;
+        StringBuilder src = new StringBuilder();
+        InputStreamReader in = null;
+        BufferedReader reader = null;
         try {
-            InputStream is = VFS.getFile(path);
-            image = ImageIO.read(is);
-            image = ImageOptimizer.optimize(image);
-        } catch (FileNotFoundException e) {
-            System.err.println("Unable to open file " + id + " at " + path);
-            return;
-        } catch (IOException e) {
+            in = new InputStreamReader(VFS.getFile(path));
+            reader = new BufferedReader(in);
+            String line;
+            while ((line = reader.readLine()) != null) {
+                src.append(line).append('\n');
+            }
+            reader.close();
+            in.close();
+        } catch (Exception e) {
             System.err.println("Unable to open file " + id + " at " + path);
             return;
         }
 
-        AnimationSheet sheet = new AnimationSheet(image,Integer.parseInt(tilesize));
+        int type;
+        if (xmlElement.getAttribute("type").equalsIgnoreCase("fragment")) {
+            type = ARBFragmentShader.GL_FRAGMENT_SHADER_ARB;
+        } else if (xmlElement.getAttribute("type").equalsIgnoreCase("vertex")) {
+            type = ARBVertexShader.GL_VERTEX_SHADER_ARB;
+        } else {
+            System.err.println("Shader must either be a fragment or vertex");
+            return;
+        }
+
+        Shader shader = new Shader(src.toString(),type);
 
         numberOfLoadedObjects++;
-        animationSheetMap.put(id,sheet);
+        shaderMap.put(id,shader);
+
+
     }
 
     @Override
     public String getLoaderID() {
-        return "animation";
+        return "shader";
     }
 
     @Override

@@ -16,12 +16,13 @@
  *
  */
 
-package volpes.ldk.client;
+package volpes.ldk.client.resourceloaders;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import volpes.ldk.client.*;
 import volpes.ldk.utils.ImageOptimizer;
 import volpes.ldk.utils.Parsers;
 import volpes.ldk.utils.VFS;
@@ -38,7 +39,7 @@ import java.util.Map;
 /**
  * @author Lasse Dissing Hansen
  */
-public class TiledLoader implements ResourceLoader{
+public class TiledLoader implements ResourceLoader {
 
     private Map<String,TiledMap> maps = new HashMap<String,TiledMap>();
     private int numberOfLoadedObjects = 0;
@@ -147,7 +148,7 @@ public class TiledLoader implements ResourceLoader{
         return layers;
     }
 
-    private Layer loadLayer(NodeList tileNodes) throws LDKException{
+    private Layer loadLayer(NodeList tileNodes) throws LDKException {
         List<Integer> tiles = new ArrayList<Integer>();
         for (int index = 0; index < tileNodes.getLength(); index++) {
 
