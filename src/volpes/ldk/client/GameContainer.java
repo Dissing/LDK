@@ -35,21 +35,28 @@ public class GameContainer {
     /* The current part. This is the state or gamemode that runs currently*/
     private GameState currentState;
 
-    public ResourceManager manager = new ResourceManager();
+    private ResourceManager resourceManager;
+
+    private ProcessManager processManager;
+
+    private EventManager eventManager;
 
     private Input input;
 
     public GameContainer() {
         input = new Input();
+        resourceManager = new ResourceManager();
+        processManager = new ProcessManager();
+        eventManager = new EventManager();
     }
 
     protected void initialize() {
         //Attaching standard loaders for resourceManager
-        manager.attachLoader(new ImageLoader(),"image");
-        manager.attachLoader(new AnimationLoader(),"animation");
-        manager.attachLoader(new TiledLoader(),"tiledmap");
+        resourceManager.attachLoader(new ImageLoader(), "image");
+        resourceManager.attachLoader(new AnimationLoader(), "animation");
+        resourceManager.attachLoader(new TiledLoader(), "tiledmap");
 
-        manager.initialize("resources.xml");
+        resourceManager.initialize("resources.xml");
 
         //Initializing first state
         if (states.size() > 0) {
@@ -63,6 +70,7 @@ public class GameContainer {
     }
 
     protected void tick() {
+        processManager.tickProcesses();
         currentState.update(this);
     }
 
@@ -119,5 +127,17 @@ public class GameContainer {
      */
     public Input getInput() {
         return input;
+    }
+
+    public ResourceManager getResourceManager() {
+        return resourceManager;
+    }
+
+    public ProcessManager getProcessManager() {
+        return processManager;
+    }
+
+    public  EventManager getEventManager() {
+        return eventManager;
     }
 }
