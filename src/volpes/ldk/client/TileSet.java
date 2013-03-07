@@ -40,7 +40,7 @@ public class TileSet {
 
     private List<BufferedImage> tiles = new ArrayList<BufferedImage>();
 
-    TileSet(String name, BufferedImage source, int tileWidth, int tileHeight, int spacing, int margin) {
+    public TileSet(String name, BufferedImage source, int tileWidth, int tileHeight, int spacing, int margin) {
         this.name = name;
         this.source = source;
         this.tileWidth = tileWidth;

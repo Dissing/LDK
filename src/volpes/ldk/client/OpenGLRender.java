@@ -56,12 +56,10 @@ public class OpenGLRender extends Render {
 
     @Override
     protected void attachInput(Input input) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     protected void updateSettings() {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
@@ -78,71 +76,57 @@ public class OpenGLRender extends Render {
 
     @Override
     public void drawImage(BufferedImage img, int x, int y) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void drawString(String str, int x, int y) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void drawLine(int x1, int y1, int x2, int y2) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void drawRect(int x, int y, int width, int height) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void fillRect(int x, int y, int width, int height) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void fillArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void setColor(Color color) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void scale(float sx, float sy) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void translate(int tx, int ty) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void rotate(double theta) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void rotate(double theta, int x, int y) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void push() {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void pop() {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void fillPolygon(Polygon polygon) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

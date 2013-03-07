@@ -46,12 +46,12 @@ public class TiledLoader implements ResourceLoader {
 
     @Override
     public void initialize() {
-        //To change body of implemented methods use File | Settings | File Templates.
+
     }
 
     @Override
     public void shutdown() {
-        //To change body of implemented methods use File | Settings | File Templates.
+
     }
 
     @Override

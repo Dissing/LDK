@@ -34,7 +34,7 @@ public class TiledMap {
     private List<TileSet> tileSets;
     private List<Layer> layers;
 
-    TiledMap(int width, int height, int tileWidth, int tileHeight, List<Layer> layers , List<TileSet> tileSets) {
+    public TiledMap(int width, int height, int tileWidth, int tileHeight, List<Layer> layers , List<TileSet> tileSets) {
         this.width = width;
         this.height = height;
         this.tileWidth = tileWidth;

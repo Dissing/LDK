@@ -90,12 +90,10 @@ public class FrameRender extends  Render {
 
     @Override
     protected void destroyRender() {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     protected void destroyScreen() {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
