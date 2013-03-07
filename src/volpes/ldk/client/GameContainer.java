@@ -18,6 +18,10 @@
 
 package volpes.ldk.client;
 
+import volpes.ldk.client.resourceloaders.AnimationLoader;
+import volpes.ldk.client.resourceloaders.ImageLoader;
+import volpes.ldk.client.resourceloaders.TiledLoader;
+
 import java.util.ArrayList;
 import java.util.List;
 
