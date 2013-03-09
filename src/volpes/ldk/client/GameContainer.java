@@ -41,13 +41,16 @@ public class GameContainer {
 
     private EventManager eventManager;
 
+    private GameWorld world;
+
     private Input input;
 
     public GameContainer() {
         input = new Input();
         resourceManager = new ResourceManager();
         processManager = new ProcessManager();
-        eventManager = new EventManager();
+        eventManager = new EventManager(this);
+        world = new GameWorld();
     }
 
     protected void initialize() {
@@ -139,5 +142,9 @@ public class GameContainer {
 
     public  EventManager getEventManager() {
         return eventManager;
+    }
+
+    public GameWorld getWorld() {
+        return world;
     }
 }

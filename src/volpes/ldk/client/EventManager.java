@@ -18,10 +18,45 @@
 
 package volpes.ldk.client;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * @author Lasse Dissing Hansen
  */
 public class EventManager {
+
+    public static final int ID_QUERY = 0;
+    public static final int ATTRIBUTE_QUERY = 1;
+    public static final int RADIUS_QUERY = 2;
+
+    private final GameContainer container;
+
+    public EventManager(GameContainer container) {
+        this.container = container;
+    }
+
+    public List<Entity> queryObjects(int type, Object caller) {
+        ArrayList<Entity> list = new ArrayList<Entity>();
+        Iterator iter = container.getWorld().iterator();
+        while (iter.hasNext()) {
+            Entity entity = (Entity)iter.next();
+            if (entity.query(type,caller)) {
+                list.add(entity);
+            }
+        }
+
+        return list;
+    }
+
+    public void sendEvent(Event event) {
+        Iterator iter = container.getWorld().iterator();
+        while (iter.hasNext()) {
+            ((Entity)iter.next()).gotEvent(event);
+        }
+
+    }
 
 
 }

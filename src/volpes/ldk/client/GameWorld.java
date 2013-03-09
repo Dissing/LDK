@@ -15,18 +15,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  */
+
 package volpes.ldk.client;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+
 /**
- * Basic Entity class providing basic interface and position
  * @author Lasse Dissing Hansen
- * @since 0.1
  */
-public abstract class Entity {
+public class GameWorld {
 
-    public abstract boolean query(int type, Object caller);
+    private LinkedList<Entity> entityList;
 
-    public abstract void gotEvent(Event event);
+    public GameWorld() {
+        entityList = new LinkedList<Entity>();
+    }
+
+    public Iterator iterator() {
+        return entityList.iterator();
+    }
+
+    public void addEntity(Entity entity) {
+        entityList.add(entity);
+    }
+
+    public void removeEntity(Entity entity) {
+        entityList.remove(entity);
+    }
+
+    public void removeEntity(int id) {
+        entityList.remove(id);
+    }
+
+
 
 
 }

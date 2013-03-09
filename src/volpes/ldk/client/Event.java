@@ -15,18 +15,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  */
+
 package volpes.ldk.client;
 
 /**
- * Basic Entity class providing basic interface and position
  * @author Lasse Dissing Hansen
- * @since 0.1
  */
-public abstract class Entity {
+public interface Event {
 
-    public abstract boolean query(int type, Object caller);
+    public String getType();
 
-    public abstract void gotEvent(Event event);
-
-
+    public Object getArgument(String id);
 }
