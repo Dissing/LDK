@@ -15,18 +15,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  */
+
 package volpes.ldk.client;
 
 /**
- * Basic Entity class providing basic interface
  * @author Lasse Dissing Hansen
- * @since 0.1
  */
-public abstract class Entity {
+public abstract class DynamicGameObject {
 
-    public abstract boolean query(int type, Object caller);
+    protected float x;
+    protected float y;
+    protected float z;
 
-    public abstract void gotEvent(Event event);
+    protected float scale;
 
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public float getZ() {
+        return z;
+    }
+
+    public float getScale() {
+        return scale;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public void setZ(float z) {
+        this.z = z;
+    }
+
+    public  void setScale(float scale) {
+        this.scale = scale;
+    }
 
 }
