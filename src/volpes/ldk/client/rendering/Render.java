@@ -149,12 +149,12 @@ public abstract class Render {
     /**
      * Called every time before rendering a frame
      */
-    protected abstract void preRender();
+    public abstract void preRender();
 
     /**
      * Called every time after a frame
      */
-    protected abstract void postRender();
+    public abstract void postRender();
 
     /**
      * Initialize the screen here

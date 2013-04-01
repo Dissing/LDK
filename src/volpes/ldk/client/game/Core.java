@@ -35,23 +35,16 @@ public class Core implements Runnable {
 	
 	private final int targetFPS = 1000 / 60;
 
+    private Game game;
+
     private Render render;
 
 	/**
 	 * Creates a new game
 	 */
-	public Core() {
+	public Core(Game game) {
+        this.game = game;
         Settings.init("engine.ini");
-        container = new GameContainer();
-        String renderType = Settings.has("render") ? Settings.getString("render") : "framerender";
-        if (renderType.equalsIgnoreCase("lwjgl") || renderType.equalsIgnoreCase("opengl")) {
-            render = new OpenGLRender();
-            System.out.println("Using a LWJGL render");
-        } else  {
-            render = new FrameRender();
-            System.out.println("Using a Java-based frame render");
-        }
-
 	}
 
 	/**
@@ -77,13 +70,8 @@ public class Core implements Runnable {
 		initialize();
 		while (running) {
 			getDelta();
-			container.tick();
 			updateFPS();
-            if (Settings.isUpdated())
-                render.updateSettings();
-            render.preRender();
-            container.render(render);
-            render.postRender();
+            tick();
 			int delta = getDelta();
 			if (delta > targetFPS)
 				delta = targetFPS;
@@ -95,21 +83,27 @@ public class Core implements Runnable {
 		}
         destroy();
 	}
+
+    public void tick() {
+        game.stateManager.tickStates();
+        game.update();
+        game.processManager.tickProcesses();
+        game.stateManager.renderStates();
+        game.render();
+        render.preRender();
+        render.postRender();
+    }
 	
 	/**
 	 * Initialises the framework before entering main loop
 	 */
 	private void initialize() {
-        render.initScreen();
-        container.initialize();
-        render.attachInput(container.getInput());
-        render.initRender();
+        game.initialise();
 
 	}
 
     private void destroy() {
-        render.destroyRender();
-        render.destroyScreen();
+        game.cleanup();
     }
 	
 
@@ -145,9 +139,5 @@ public class Core implements Runnable {
 		}
 		fps++;
 	}
-
-    public GameContainer getContainer() {
-        return container;
-    }
 	
 }

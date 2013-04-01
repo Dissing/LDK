@@ -18,8 +18,26 @@
 
 package volpes.ldk.client.event;
 
+import volpes.ldk.client.entities.Entity;
+import volpes.ldk.client.game.Game;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * @author Lasse Dissing Hansen
  */
-public interface EventManager {
+public class LEventManager implements EventManager{
+
+    private final Game game;
+
+    public LEventManager(Game game) {
+        this.game = game;
+    }
+
+    public void shutdown() {
+
+    }
+
 }

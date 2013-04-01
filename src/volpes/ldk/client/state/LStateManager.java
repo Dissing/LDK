@@ -16,10 +16,27 @@
  *
  */
 
-package volpes.ldk.client.event;
+package volpes.ldk.client.state;
 
 /**
  * @author Lasse Dissing Hansen
  */
-public interface EventManager {
+public class LStateManager implements StateManager{
+
+    public LStateManager() {
+
+    }
+
+    public void shutdown() {
+
+    }
+
+    public void tickStates() {
+
+    }
+
+    public void renderStates() {
+
+    }
+
 }

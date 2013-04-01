@@ -67,7 +67,7 @@ public class TiledMap {
         layers.get(layer).cache = cache;
     }
 
-    public void render(GameContainer container, Render g, int xOffset, int yOffset) {
+    public void render(Render g, int xOffset, int yOffset) {
         for (int layer = 0; layer < layers.size(); layer++) {
             if (!layers.get(layer).cache) {
                 drawLayer(g,layer,xOffset,yOffset);

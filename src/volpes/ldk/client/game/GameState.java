@@ -18,6 +18,7 @@
 package volpes.ldk.client.game;
 
 import volpes.ldk.client.rendering.Render;
+import volpes.ldk.client.state.StateManager;
 
 /**
  * Each game state wanting to get called by LDK must extends this
@@ -31,7 +32,7 @@ public interface GameState {
     /**
      * Called right before the state is used the first time
      */
-    public abstract void intialise(GameContainer container);
+    public abstract void intialise(Game game);
 
     /**
      * @return True if the state have been initialised before

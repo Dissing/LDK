@@ -21,6 +21,5 @@ package volpes.ldk.client.state;
 /**
  * @author Lasse Dissing Hansen
  */
-public class StateManager {
-
+public interface StateManager {
 }

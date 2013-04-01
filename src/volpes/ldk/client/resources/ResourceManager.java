@@ -18,67 +18,11 @@
 
 package volpes.ldk.client.resources;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import volpes.ldk.utils.LDKException;
-import volpes.ldk.utils.Parsers;
-import volpes.ldk.utils.VFS;
-
-import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * @author Lasse Dissing Hansen
  */
-public class ResourceManager {
+public interface ResourceManager {
 
-    private Map<String,ResourceLoader> loaders = new HashMap<String, ResourceLoader>();
-
-
-    /**
-     * Initializes the resource manager and loads ALL resources into memory
-     * @param filename The filename of the resource file
-     */
-    protected void initialize(String filename) {
-        InputStream is = null;
-        try {
-            is = VFS.getFile(filename);
-        }  catch (FileNotFoundException e) {
-            System.err.println("Unable to locate the resource file \""+filename+"\" at the games root directory");
-            System.exit(1);
-        }
-        loadResources(Parsers.parseXML(is));
-    }
-
-    protected void finalize() {
-        for (ResourceLoader loader : loaders.values()) {
-            loader.shutdown();
-        }
-    }
-
-    private void loadResources(Document doc) {
-        NodeList resourceNodes = doc.getElementsByTagName("resource");
-        int totalResources = resourceNodes.getLength();
-
-        for (int i = 0; i < totalResources; i++) {
-            Node resourceNode = resourceNodes.item(i);
-
-            if (resourceNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element resourceElement = (Element)resourceNode;
-
-                String loaderID = resourceElement.getAttribute("type");
-
-                if (loaders.containsKey(loaderID)) {
-                    loaders.get(loaderID).load(resourceElement);
-                } else {
-                    System.err.println("No loader was registered for ID: " + loaderID + " ignoring file");
-                }
-            }
-        }
-    }
 
     /**
      * Attaches a new loader to the manager.
@@ -86,10 +30,7 @@ public class ResourceManager {
      * @param loader The loader
      * @param loaderID The type this loader must respond to
      */
-    public void attachLoader(ResourceLoader loader, String loaderID) {
-        loaders.put(loaderID,loader);
-        loader.initialize();
-    }
+    public void attachLoader(ResourceLoader loader, String loaderID);
 
     /**
      * Returns a resource with of the specified type with the id
@@ -97,12 +38,5 @@ public class ResourceManager {
      * @param id The id of the resource
      * @return The resource
      */
-    public Object get(String type, String id) {
-        if (!loaders.containsKey(type)) {
-            throw new LDKException("That resource type is not know by this manager");
-        }
-        return loaders.get(type).get(id);
-    }
-
-
+    public Object get(String type, String id);
 }

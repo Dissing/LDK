@@ -16,10 +16,10 @@
  *
  */
 
-package volpes.ldk.client.event;
+package volpes.ldk.client.scene;
 
 /**
  * @author Lasse Dissing Hansen
  */
-public interface EventManager {
+public interface SceneManager {
 }
