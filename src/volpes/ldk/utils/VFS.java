@@ -47,7 +47,7 @@ public class VFS {
      * Checks both inside Jar and game root
      * @param path The path to the file
      * @return An {@link InputStream} to the file
-     * @throws volpes.ldk.client.LDKException If no such file is found
+     * @throws LDKException If no such file is found
      */
     public static InputStream getFile(String path) throws FileNotFoundException {
         InputStream is;
