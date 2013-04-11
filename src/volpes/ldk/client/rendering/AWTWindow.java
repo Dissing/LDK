@@ -24,6 +24,7 @@ public class AWTWindow extends Screen {
         frame.setContentPane(panel);
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(640,480);
         frame.setVisible(true);
     }
 

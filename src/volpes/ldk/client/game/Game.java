@@ -18,10 +18,16 @@
 
 package volpes.ldk.client.game;
 
+import volpes.ldk.client.event.EventManager;
 import volpes.ldk.client.event.EventMgr;
+import volpes.ldk.client.process.ProcessManager;
 import volpes.ldk.client.process.ProcessMgr;
+import volpes.ldk.client.rendering.*;
+import volpes.ldk.client.resources.ResourceManager;
 import volpes.ldk.client.resources.ResourceMgr;
+import volpes.ldk.client.scene.SceneManager;
 import volpes.ldk.client.scene.SceneMgr;
+import volpes.ldk.client.state.StateManager;
 import volpes.ldk.client.state.StateMgr;
 
 /**
@@ -34,9 +40,10 @@ public abstract class Game {
     protected ProcessMgr processManager;
     protected StateMgr stateManager;
     protected SceneMgr sceneManager;
+    protected Screen screen;
+    protected AbstractRender renderManager;
 
     public Game() {
-
     }
 
     protected void initialise() {
@@ -45,6 +52,10 @@ public abstract class Game {
         processManager = new ProcessMgr();
         stateManager = new StateMgr();
         sceneManager = new SceneMgr();
+        screen = new AWTWindow();
+        screen.createScreen();
+        renderManager = new Java2DRender();
+        renderManager.initialise(screen);
     }
 
     protected void cleanup() {
@@ -55,24 +66,28 @@ public abstract class Game {
         resourceManager.shutdown();
     }
 
-    public ResourceMgr getResourceManager() {
+    public ResourceManager getResourceManager() {
         return resourceManager;
     }
 
-    public EventMgr getEventManager() {
+    public EventManager getEventManager() {
         return eventManager;
     }
 
-    public ProcessMgr getProcessManager() {
+    public ProcessManager getProcessManager() {
         return processManager;
     }
 
-    public StateMgr getStateManager() {
+    public StateManager getStateManager() {
         return stateManager;
     }
 
-    public SceneMgr getSceneManager() {
+    public SceneManager getSceneManager() {
         return sceneManager;
+    }
+
+    public RenderManager getRenderManager() {
+        return renderManager;
     }
 
     public abstract void update();

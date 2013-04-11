@@ -37,8 +37,6 @@ public class Core implements Runnable {
 
     private Game game;
 
-    private Render render;
-
 	/**
 	 * Creates a new game
 	 */
@@ -88,10 +86,10 @@ public class Core implements Runnable {
         game.stateManager.tickStates();
         game.update();
         game.processManager.tickProcesses();
+        game.renderManager.preRender();
         game.stateManager.renderStates();
         game.render();
-        render.preRender();
-        render.postRender();
+        game.renderManager.postRender();
     }
 	
 	/**

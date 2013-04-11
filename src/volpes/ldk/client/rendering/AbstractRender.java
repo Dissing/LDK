@@ -3,7 +3,7 @@ package volpes.ldk.client.rendering;
 /**
  * @author Lasse Dissing Hansen
  */
-public abstract class AbstractRender {
+public abstract class AbstractRender implements RenderManager {
 
     public abstract void initialise(Screen screen);
 
