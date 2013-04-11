@@ -28,11 +28,11 @@ import java.util.List;
 /**
  * @author Lasse Dissing Hansen
  */
-public class LEventManager implements EventManager{
+public class EventMgr implements EventManager{
 
     private final Game game;
 
-    public LEventManager(Game game) {
+    public EventMgr(Game game) {
         this.game = game;
     }
 

@@ -21,10 +21,10 @@ package volpes.ldk.client.scene;
 /**
  * @author Lasse Dissing Hansen
  */
-public class LSceneManager implements SceneManager{
+public class SceneMgr implements SceneManager{
 
 
-    public LSceneManager() {
+    public SceneMgr() {
 
     }
 

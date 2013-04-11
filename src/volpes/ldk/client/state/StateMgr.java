@@ -21,9 +21,9 @@ package volpes.ldk.client.state;
 /**
  * @author Lasse Dissing Hansen
  */
-public class LStateManager implements StateManager{
+public class StateMgr implements StateManager{
 
-    public LStateManager() {
+    public StateMgr() {
 
     }
 

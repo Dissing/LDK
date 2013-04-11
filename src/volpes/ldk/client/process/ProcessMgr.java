@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * @author Lasse Dissing Hansen
  */
-public class LProcessManager implements ProcessManager{
+public class ProcessMgr implements ProcessManager{
 
     private ArrayList<Process> processList = new ArrayList<Process>();
 

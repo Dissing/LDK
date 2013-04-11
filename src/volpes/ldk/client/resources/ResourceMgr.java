@@ -33,7 +33,7 @@ import java.util.Map;
 /**
  * @author Lasse Dissing Hansen
  */
-public class LResourceManager implements ResourceManager{
+public class ResourceMgr implements ResourceManager{
 
     private Map<String,ResourceLoader> loaders = new HashMap<String, ResourceLoader>();
 
@@ -42,7 +42,7 @@ public class LResourceManager implements ResourceManager{
      * Initializes the resource manager and loads ALL resources into memory
      * @param filename The filename of the resource file
      */
-    public LResourceManager(String filename) {
+    public ResourceMgr(String filename) {
         InputStream is = null;
         try {
             is = VFS.getFile(filename);

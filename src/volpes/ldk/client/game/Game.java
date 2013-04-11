@@ -18,33 +18,33 @@
 
 package volpes.ldk.client.game;
 
-import volpes.ldk.client.event.LEventManager;
-import volpes.ldk.client.process.LProcessManager;
-import volpes.ldk.client.resources.LResourceManager;
-import volpes.ldk.client.scene.LSceneManager;
-import volpes.ldk.client.state.LStateManager;
+import volpes.ldk.client.event.EventMgr;
+import volpes.ldk.client.process.ProcessMgr;
+import volpes.ldk.client.resources.ResourceMgr;
+import volpes.ldk.client.scene.SceneMgr;
+import volpes.ldk.client.state.StateMgr;
 
 /**
  * @author Lasse Dissing Hansen
  */
 public abstract class Game {
 
-    protected LResourceManager resourceManager;
-    protected LEventManager eventManager;
-    protected LProcessManager processManager;
-    protected LStateManager stateManager;
-    protected LSceneManager sceneManager;
+    protected ResourceMgr resourceManager;
+    protected EventMgr eventManager;
+    protected ProcessMgr processManager;
+    protected StateMgr stateManager;
+    protected SceneMgr sceneManager;
 
     public Game() {
 
     }
 
     protected void initialise() {
-        resourceManager = new LResourceManager("resources.xml");
-        eventManager = new LEventManager(this);
-        processManager = new LProcessManager();
-        stateManager = new LStateManager();
-        sceneManager = new LSceneManager();
+        resourceManager = new ResourceMgr("resources.xml");
+        eventManager = new EventMgr(this);
+        processManager = new ProcessMgr();
+        stateManager = new StateMgr();
+        sceneManager = new SceneMgr();
     }
 
     protected void cleanup() {
@@ -55,23 +55,23 @@ public abstract class Game {
         resourceManager.shutdown();
     }
 
-    public LResourceManager getResourceManager() {
+    public ResourceMgr getResourceManager() {
         return resourceManager;
     }
 
-    public LEventManager getEventManager() {
+    public EventMgr getEventManager() {
         return eventManager;
     }
 
-    public LProcessManager getProcessManager() {
+    public ProcessMgr getProcessManager() {
         return processManager;
     }
 
-    public LStateManager getStateManager() {
+    public StateMgr getStateManager() {
         return stateManager;
     }
 
-    public LSceneManager getSceneManager() {
+    public SceneMgr getSceneManager() {
         return sceneManager;
     }
 
