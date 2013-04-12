@@ -18,6 +18,8 @@
 
 package volpes.ldk.client.game;
 
+import volpes.ldk.client.audio.ALAudioManager;
+import volpes.ldk.client.audio.AudioManager;
 import volpes.ldk.client.event.EventManager;
 import volpes.ldk.client.event.EventMgr;
 import volpes.ldk.client.process.ProcessManager;
@@ -42,6 +44,7 @@ public abstract class Game {
     protected SceneMgr sceneManager;
     protected Screen screen;
     protected AbstractRender renderManager;
+    protected ALAudioManager audioManager;
 
     public Game() {
     }
@@ -57,15 +60,21 @@ public abstract class Game {
         screen.createScreen();
         renderManager = new Java2DRender();
         renderManager.initialise(screen);
+        audioManager.initialise();
         initialise();
     }
 
     protected void cleanup() {
+        audioManager.shutdown();
+        renderManager.shutdown();
+        screen.destroyScreen();
         sceneManager.shutdown();
         stateManager.shutdown();
         processManager.shutdown();
         eventManager.shutdown();
         resourceManager.shutdown();
+
+
     }
 
     public ResourceManager getResourceManager() {
@@ -90,6 +99,10 @@ public abstract class Game {
 
     public RenderManager getRenderManager() {
         return renderManager;
+    }
+
+    public AudioManager getAudioManager() {
+        return audioManager;
     }
 
     public abstract void preEngineStart();
