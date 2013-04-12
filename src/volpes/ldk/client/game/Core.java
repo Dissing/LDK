@@ -17,8 +17,6 @@
  */
 package volpes.ldk.client.game;
 
-import volpes.ldk.client.rendering.Render;
-
 /**
  * The main game container that handles the main loop and is the entry point. 
  * @author Lasse Dissing Hansen
@@ -96,7 +94,7 @@ public class Core implements Runnable {
 	 * Initialises the framework before entering main loop
 	 */
 	private void initialize() {
-        game.initialise();
+        game.internalInit();
 
 	}
 

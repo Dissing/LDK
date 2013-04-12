@@ -24,9 +24,10 @@ public class Java2DRender extends AbstractRender {
         }
         AWTWindow window = (AWTWindow)screen;
 
-        window.getCanvas();
+        canvas = window.getCanvas();
         width = window.getWidth();
         height = window.getHeight();
+        canvas.createBufferStrategy(3);
 
     }
 
@@ -40,7 +41,7 @@ public class Java2DRender extends AbstractRender {
         bs = canvas.getBufferStrategy();
         g = (Graphics2D)bs.getDrawGraphics();
         g.setColor(Color.BLACK);
-        g.clearRect(0,0,width,height);
+        g.fillRect(0,0,width,height);
 
     }
 

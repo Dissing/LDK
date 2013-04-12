@@ -46,7 +46,8 @@ public abstract class Game {
     public Game() {
     }
 
-    protected void initialise() {
+    protected void internalInit() {
+        preEngineStart();
         resourceManager = new ResourceMgr("resources.xml");
         eventManager = new EventMgr(this);
         processManager = new ProcessMgr();
@@ -56,6 +57,7 @@ public abstract class Game {
         screen.createScreen();
         renderManager = new Java2DRender();
         renderManager.initialise(screen);
+        initialise();
     }
 
     protected void cleanup() {
@@ -89,6 +91,10 @@ public abstract class Game {
     public RenderManager getRenderManager() {
         return renderManager;
     }
+
+    public abstract void preEngineStart();
+
+    public abstract void initialise();
 
     public abstract void update();
 

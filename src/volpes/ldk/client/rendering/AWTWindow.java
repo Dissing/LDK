@@ -16,7 +16,7 @@ public class AWTWindow extends Screen {
     @Override
     public void createScreen() {
 
-        frame = new JFrame();
+        frame = new JFrame("LDK");
         panel = new JPanel(new BorderLayout());
         canvas = new Canvas();
         panel.add(canvas);
