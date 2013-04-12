@@ -25,9 +25,13 @@ import org.lwjgl.openal.OpenALException;
  */
 public class ALMusic implements Music {
 
+    static ALAudioManager manager;
+
     int source;
 
     int buffer;
+
+    float volume = 1.0f;
 
     boolean playing = false;
 
@@ -48,8 +52,11 @@ public class ALMusic implements Music {
 
     @Override
     public void play() {
-        AL10.alSourcePlay(source);
-        playing = true;
+        if (!manager.isMusicMuted()) {
+            AL10.alSourcef(source,AL10.AL_GAIN,volume*manager.getMasterVolume()*manager.getMusicVolume());
+            AL10.alSourcePlay(source);
+            playing = true;
+        }
     }
 
     @Override
@@ -72,7 +79,9 @@ public class ALMusic implements Music {
 
     @Override
     public void setVolume(float volume) {
-        AL10.alSourcei(source,AL10.AL_GAIN,AL10.AL_FALSE);
+        if (volume > 1.0f) volume = 1.0f;
+        if (volume < 0.0f) volume = 0.0f;
+        this.volume = volume;
     }
 
     @Override

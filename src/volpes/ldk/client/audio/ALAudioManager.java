@@ -46,6 +46,9 @@ public class ALAudioManager implements AudioManager {
             throw new LDKException("Unable to create OpenAL context", e);
         }
 
+        ALSound.manager = this;
+        ALMusic.manager = this;
+
     }
 
     public void shutdown() {

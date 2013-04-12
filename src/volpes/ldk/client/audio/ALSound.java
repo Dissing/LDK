@@ -25,6 +25,8 @@ import org.lwjgl.openal.OpenALException;
  */
 public class ALSound implements Sound {
 
+    static ALAudioManager manager;
+
     public int buffer;
 
     public int source;
@@ -44,10 +46,12 @@ public class ALSound implements Sound {
 
     @Override
     public void play(float volume) {
-        if (volume > 1.0f) volume = 1.0f;
-        if (volume < 0.0f) volume = 0.0f;
-        AL10.alSourcef(source,AL10.AL_GAIN,volume);
-        AL10.alSourcePlay(source);
+        if (!manager.isSoundMuted()) {
+            if (volume > 1.0f) volume = 1.0f;
+            if (volume < 0.0f) volume = 0.0f;
+            AL10.alSourcef(source,AL10.AL_GAIN,volume*manager.getMasterVolume()*manager.getSoundVolume());
+            AL10.alSourcePlay(source);
+        }
     }
 
     @Override
