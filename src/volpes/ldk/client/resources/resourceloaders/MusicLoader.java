@@ -29,7 +29,8 @@ public class MusicLoader implements ResourceLoader {
 
     @Override
     public void shutdown() {
-
+        for (Music music : musicMap.values())
+            music.dispose();
     }
 
     @Override
@@ -42,7 +43,7 @@ public class MusicLoader implements ResourceLoader {
         String id = xmlElement.getAttribute("id");
         String path = xmlElement.getTextContent();
         if (path == null || path.length() == 0)
-            System.err.println("Image resource [" + id + "] has invalid path");
+            System.err.println("Sound resource [" + id + "] has invalid path");
 
         Music music;
         try {
