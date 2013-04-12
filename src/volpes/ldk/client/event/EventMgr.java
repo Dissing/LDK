@@ -30,9 +30,9 @@ import java.util.List;
  */
 public class EventMgr implements EventManager{
 
-    private final Game game;
+    private Game game;
 
-    public EventMgr(Game game) {
+    public void initialise(Game game) {
         this.game = game;
     }
 

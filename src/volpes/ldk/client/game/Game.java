@@ -37,28 +37,26 @@ import volpes.ldk.client.state.StateMgr;
  */
 public abstract class Game {
 
-    protected ResourceMgr resourceManager;
-    protected EventMgr eventManager;
-    protected ProcessMgr processManager;
-    protected StateMgr stateManager;
-    protected SceneMgr sceneManager;
-    protected Screen screen;
-    protected AbstractRender renderManager;
-    protected ALAudioManager audioManager;
+    protected ResourceMgr resourceManager = new ResourceMgr();
+    protected EventMgr eventManager = new EventMgr();
+    protected ProcessMgr processManager = new ProcessMgr();
+    protected StateMgr stateManager = new StateMgr();
+    protected SceneMgr sceneManager = new SceneMgr();
+    protected Screen screen = new AWTWindow();
+    protected AbstractRender renderManager = new Java2DRender();
+    protected ALAudioManager audioManager = new ALAudioManager();
 
     public Game() {
     }
 
     protected void internalInit() {
         preEngineStart();
-        resourceManager = new ResourceMgr("resources.xml");
-        eventManager = new EventMgr(this);
-        processManager = new ProcessMgr();
-        stateManager = new StateMgr();
-        sceneManager = new SceneMgr();
-        screen = new AWTWindow();
+        resourceManager.initialise("resources.xml");
+        eventManager.initialise(this);
+        processManager.initialise();
+        stateManager.initialise();
+        sceneManager.initialise();
         screen.createScreen();
-        renderManager = new Java2DRender();
         renderManager.initialise(screen);
         audioManager.initialise();
         initialise();

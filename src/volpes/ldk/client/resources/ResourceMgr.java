@@ -37,12 +37,11 @@ public class ResourceMgr implements ResourceManager{
 
     private Map<String,ResourceLoader> loaders = new HashMap<String, ResourceLoader>();
 
-
     /**
      * Initializes the resource manager and loads ALL resources into memory
      * @param filename The filename of the resource file
      */
-    public ResourceMgr(String filename) {
+    public void initialise(String filename) {
         InputStream is = null;
         try {
             is = VFS.getFile(filename);

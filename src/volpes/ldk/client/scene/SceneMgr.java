@@ -24,7 +24,7 @@ package volpes.ldk.client.scene;
 public class SceneMgr implements SceneManager{
 
 
-    public SceneMgr() {
+    public void initialise() {
 
     }
 

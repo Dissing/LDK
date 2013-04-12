@@ -23,7 +23,7 @@ package volpes.ldk.client.state;
  */
 public class StateMgr implements StateManager{
 
-    public StateMgr() {
+    public void initialise() {
 
     }
 

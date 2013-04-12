@@ -9,6 +9,9 @@ public class ProcessMgr implements ProcessManager{
 
     private ArrayList<Process> processList = new ArrayList<Process>();
 
+    public void initialise() {
+
+    }
 
     public void attach(Process process) {
         processList.add(process);
