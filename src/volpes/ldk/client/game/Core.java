@@ -17,6 +17,10 @@
  */
 package volpes.ldk.client.game;
 
+import org.lwjgl.LWJGLUtil;
+
+import java.io.File;
+
 /**
  * The main game container that handles the main loop and is the entry point. 
  * @author Lasse Dissing Hansen
@@ -41,6 +45,7 @@ public class Core implements Runnable {
 	public Core(Game game) {
         this.game = game;
         Settings.init("engine.ini");
+        System.setProperty("org.lwjgl.librarypath",new File(new File(System.getProperty("user.dir"), "libs/native"), LWJGLUtil.getPlatformName()).getAbsolutePath());
 	}
 
 	/**
