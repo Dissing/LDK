@@ -51,7 +51,6 @@ public abstract class Game {
 
     protected void internalInit() {
         preEngineStart();
-        resourceManager.initialise("resources.xml");
         eventManager.initialise(this);
         processManager.initialise();
         stateManager.initialise();
@@ -59,6 +58,8 @@ public abstract class Game {
         screen.createScreen();
         renderManager.initialise(screen);
         audioManager.initialise();
+        resourceManager.initialise("resources.xml");
+
         initialise();
     }
 
