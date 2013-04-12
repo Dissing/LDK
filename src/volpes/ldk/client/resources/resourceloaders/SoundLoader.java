@@ -4,7 +4,9 @@ import org.lwjgl.openal.AL10;
 import org.lwjgl.util.WaveData;
 import org.w3c.dom.Element;
 import volpes.ldk.client.audio.ALMusic;
+import volpes.ldk.client.audio.ALSound;
 import volpes.ldk.client.audio.Music;
+import volpes.ldk.client.audio.Sound;
 import volpes.ldk.client.resources.ResourceLoader;
 import volpes.ldk.utils.LDKException;
 import volpes.ldk.utils.VFS;
@@ -19,7 +21,7 @@ import java.util.Map;
  */
 public class SoundLoader implements ResourceLoader {
 
-    private Map<String,Music>  musicMap = new HashMap<String,Music>();
+    private Map<String,Sound> soundMap = new HashMap<String,Sound>();
     private int numberOfLoadedObjects = 0;
 
     @Override
@@ -29,13 +31,13 @@ public class SoundLoader implements ResourceLoader {
 
     @Override
     public void shutdown() {
-        for (Music music : musicMap.values())
-            music.dispose();
+        for (Sound sound : soundMap.values())
+            sound.dispose();
     }
 
     @Override
     public Object get(String id) {
-        return musicMap.get(id);
+        return soundMap.get(id);
     }
 
     @Override
@@ -43,9 +45,9 @@ public class SoundLoader implements ResourceLoader {
         String id = xmlElement.getAttribute("id");
         String path = xmlElement.getTextContent();
         if (path == null || path.length() == 0)
-            System.err.println("Image resource [" + id + "] has invalid path");
+            System.err.println("Sound resource [" + id + "] has invalid path");
 
-        Music music;
+        Sound sound;
         try {
             InputStream is = VFS.getFile(path);
             WaveData waveFile =  WaveData.create(is);
@@ -54,19 +56,19 @@ public class SoundLoader implements ResourceLoader {
                 throw new LDKException("OpenAL is probably out of memory. Otherwise I wish you good luck!");
             AL10.alBufferData(buffer,waveFile.format,waveFile.data,waveFile.samplerate);
             waveFile.dispose();
-            music = new ALMusic(buffer);
+            sound = new ALSound(buffer);
 
         } catch (FileNotFoundException e) {
             System.err.println("Unable to open file " + id + " at " + path);
             return;
         }
         numberOfLoadedObjects++;
-        musicMap.put(id, music);
+        soundMap.put(id, sound);
     }
 
     @Override
     public String getLoaderID() {
-        return "music";
+        return "sound";
     }
 
     @Override
