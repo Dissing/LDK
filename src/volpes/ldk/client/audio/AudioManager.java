@@ -22,23 +22,63 @@ package volpes.ldk.client.audio;
  */
 public interface AudioManager {
 
+    /**
+     * Sets the master volume for all audio
+     * @param volume Value between 0.0f and 1.0f
+     */
     public void setMasterVolume(float volume);
 
+    /**
+     * Sets the volume for all {@link Sound}s
+     * @param volume Value between 0.0f and 1.0f
+     */
     public void setSoundVolume(float volume);
 
+    /**
+     * Sets the volume for all {@link Music}
+     * @param volume Value between 0.0f and 1.0f
+     */
     public void setMusicVolume(float volume);
 
+    /**
+     * Mutes all {@link Sound}
+     * @param mute True for no sound
+     */
     public void muteSound(boolean mute);
 
+    /**
+     * Mutes all {@link Music}
+     * @param mute True for no music
+     */
     public void muteMusic(boolean mute);
 
+    /**
+     * Returns the master volume for all audio
+     * @return Value between 0.0f and 1.0f
+     */
     public float getMasterVolume();
 
+    /**
+     * Returns the volume for all {@link Sound}
+     * @return Value between 0.0f and 1.0f
+     */
     public float getSoundVolume();
 
+    /**
+     * Returns the volume for all {@link Music}
+     * @return Value between 0.0f and 1.0f
+     */
     public float getMusicVolume();
 
+    /**
+     * Returns whether the {@link Sound} is muted or not
+     * @return True for no sound
+     */
     public boolean isSoundMuted();
 
+    /**
+     * Returns whether the {@link Music} is muted or not
+     * @return True for no music
+     */
     public boolean isMusicMuted();
 }

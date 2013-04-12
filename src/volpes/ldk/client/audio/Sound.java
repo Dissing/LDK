@@ -22,7 +22,16 @@ package volpes.ldk.client.audio;
  */
 public interface Sound {
 
+    /**
+     * Plays the sound once at the specified volume
+     * @param volume Value between 0.0f and 1.0f
+     */
     public void play(float volume);
 
+    /**
+     * Frees this resource
+     * All calls after this results in undefined behavior
+     * Should generally not be used.
+     */
     public void dispose();
 }
