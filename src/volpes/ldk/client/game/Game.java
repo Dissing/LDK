@@ -22,6 +22,7 @@ import volpes.ldk.client.audio.ALAudioManager;
 import volpes.ldk.client.audio.AudioManager;
 import volpes.ldk.client.event.EventManager;
 import volpes.ldk.client.event.EventMgr;
+import volpes.ldk.client.input.Input;
 import volpes.ldk.client.process.ProcessManager;
 import volpes.ldk.client.process.ProcessMgr;
 import volpes.ldk.client.rendering.*;
@@ -102,6 +103,10 @@ public abstract class Game {
 
     public AudioManager getAudioManager() {
         return audioManager;
+    }
+
+    public Input getInput() {
+        return ((AWTWindow)screen).getInput();
     }
 
     public abstract void preEngineStart();

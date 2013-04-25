@@ -1,5 +1,7 @@
 package volpes.ldk.client.rendering;
 
+import volpes.ldk.client.input.Input;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,6 +13,8 @@ public class AWTWindow extends Screen {
     JFrame frame;
     JPanel panel;
     Canvas canvas;
+
+    Input input;
 
 
     @Override
@@ -26,6 +30,11 @@ public class AWTWindow extends Screen {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(640,480);
         frame.setVisible(true);
+
+        input = new Input();
+        canvas.addMouseListener(input);
+        canvas.addMouseMotionListener(input);
+        canvas.addKeyListener(input);
     }
 
     @Override
@@ -76,5 +85,10 @@ public class AWTWindow extends Screen {
     public Canvas getCanvas() {
         return canvas;
     }
+
+    public Input getInput() {
+        return input;
+    }
+
 
 }
