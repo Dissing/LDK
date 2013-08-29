@@ -38,6 +38,8 @@ import volpes.ldk.client.state.StateMgr;
  */
 public abstract class Game {
 
+    boolean shouldClose;
+
     protected ResourceMgr resourceManager = new ResourceMgr();
     protected EventMgr eventManager = new EventMgr();
     protected ProcessMgr processManager = new ProcessMgr();
@@ -107,6 +109,10 @@ public abstract class Game {
 
     public Input getInput() {
         return ((AWTWindow)screen).getInput();
+    }
+
+    public void close() {
+        shouldClose = true;
     }
 
     public abstract void preEngineStart();

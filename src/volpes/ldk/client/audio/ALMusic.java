@@ -96,7 +96,7 @@ public class ALMusic implements Music {
 
     @Override
     public void dispose() {
-        AL10.alDeleteSources(source);
-        AL10.alDeleteBuffers(buffer);
+    	//AL10.alDeleteSources(source);
+    	//AL10.alDeleteBuffers(buffer);
     }
 }

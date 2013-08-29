@@ -17,13 +17,12 @@
  */
 package volpes.ldk.client.input;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
+import volpes.ldk.client.input.InputListener;
 
 /**
  * A simplified wrapper around vanilla input listeners
@@ -36,6 +35,7 @@ public class Input implements MouseListener, MouseMotionListener, KeyListener {
 	private boolean keys[] = new boolean[65565];
 	private boolean buttons[] = new boolean[10];
 	
+	private Point2D mousePoint = new Point();
 	
 	/**
 	 * Adds a InputListener to the Input system
@@ -102,6 +102,7 @@ public class Input implements MouseListener, MouseMotionListener, KeyListener {
 		for (InputListener listener : listeners) {
 			listener.mouseMoved(e.getX(), e.getY());
 		}
+		mousePoint = e.getPoint();
 		
 	}
 
@@ -173,5 +174,7 @@ public class Input implements MouseListener, MouseMotionListener, KeyListener {
 		return buttons[button];
 	}
 	
-	
+	public Point2D getMousePoint() {
+		return mousePoint;	
+	}
 }

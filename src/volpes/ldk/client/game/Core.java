@@ -68,21 +68,29 @@ public class Core implements Runnable {
 	 */
 	@Override
 	public void run() {
-		initialize();
-		while (running) {
-			getDelta();
-			updateFPS();
-            tick();
-			int delta = getDelta();
-			if (delta > targetFPS)
-				delta = targetFPS;
-			try {
-				Thread.sleep(targetFPS - delta);
-			} catch(InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-		}
-        destroy();
+        try {
+            initialize();
+            while (running) {
+                getDelta();
+                updateFPS();
+                tick();
+                int delta = getDelta();
+                if (delta > targetFPS)
+                    delta = targetFPS;
+                try {
+                    Thread.sleep(targetFPS - delta);
+                } catch(InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                if (game.shouldClose) {
+                    running = false;
+                }
+            }
+            destroy();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(-1);
+        }
 	}
 
     public void tick() {

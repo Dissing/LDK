@@ -21,6 +21,7 @@ public class AWTWindow extends Screen {
     public void createScreen() {
 
         frame = new JFrame("LDK");
+        //frame.setUndecorated(true);
         panel = new JPanel(new BorderLayout());
         canvas = new Canvas();
         panel.add(canvas);
@@ -30,6 +31,11 @@ public class AWTWindow extends Screen {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(640,480);
         frame.setVisible(true);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int w = (int)screenSize.getWidth();
+        int h = (int)screenSize.getHeight();
+        frame.setLocation(w/2-640,h/2-360);
 
         input = new Input();
         canvas.addMouseListener(input);
